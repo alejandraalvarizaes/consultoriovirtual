@@ -113,23 +113,21 @@
     white-space: nowrap;
   }
 }
-/* Retrato más alto y vertical */
+/* Retrato en 4:5, responsivo */
 .portrait{
   width: 100%;
-  height: clamp(340px, 60vw, 560px); /* ↑ más alto en todos los tamaños */
-  aspect-ratio: 4 / 5;              /* proporción vertical agradable */
-  object-fit: cover;                 /* llena sin deformar */
-  object-position: center 20%;       /* centra ligeramente hacia arriba */
+  aspect-ratio: 4 / 5;      /* ← relación exacta */
+  object-fit: cover;        /* llena sin deformar */
+  object-position: center;  /* ajusta el encuadre si quieres */
   border-radius: 18px;
   border: 1px dashed rgba(31,59,77,.18);
   background: #ddd;
 }
 
-/* En pantallas medianas/grandes, aún más alto */
+/* (Opcional) En desktop que luzca más alta sin romper la proporción */
 @media (min-width: 860px){
-  .portrait{ height: 520px; }        /* ajusta a tu gusto: 520–600px */
+  .portrait{ max-height: 600px; }   /* sube/baja este valor a gusto */
 }
-
 </style>
 </head>
 <body>
@@ -403,5 +401,6 @@
 </body>
 
 </html>
+
 
 
