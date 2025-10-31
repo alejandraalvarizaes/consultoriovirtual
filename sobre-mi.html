@@ -113,6 +113,22 @@
     white-space: nowrap;
   }
 }
+/* Retrato más alto y vertical */
+.portrait{
+  width: 100%;
+  height: clamp(340px, 60vw, 560px); /* ↑ más alto en todos los tamaños */
+  aspect-ratio: 4 / 5;              /* proporción vertical agradable */
+  object-fit: cover;                 /* llena sin deformar */
+  object-position: center 20%;       /* centra ligeramente hacia arriba */
+  border-radius: 18px;
+  border: 1px dashed rgba(31,59,77,.18);
+  background: #ddd;
+}
+
+/* En pantallas medianas/grandes, aún más alto */
+@media (min-width: 860px){
+  .portrait{ height: 520px; }        /* ajusta a tu gusto: 520–600px */
+}
 
 </style>
 </head>
@@ -387,4 +403,5 @@
 </body>
 
 </html>
+
 
