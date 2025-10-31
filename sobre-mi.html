@@ -113,20 +113,18 @@
     white-space: nowrap;
   }
 }
-/* Retrato en 4:5, responsivo */
+/* Mostrar completa en 9:16 */
 .portrait{
   width: 100%;
-  aspect-ratio: 4 / 5;      /* ← relación exacta */
-  object-fit: cover;        /* llena sin deformar */
-  object-position: center;  /* ajusta el encuadre si quieres */
+  aspect-ratio: 9 / 16;     /* relación nativa */
+  object-fit: cover;        /* llena el marco; no deforma */
+  object-position: center;  
   border-radius: 18px;
   border: 1px dashed rgba(31,59,77,.18);
-  background: #ddd;
+  background:#ddd;
 }
-
-/* (Opcional) En desktop que luzca más alta sin romper la proporción */
-@media (min-width: 860px){
-  .portrait{ max-height: 600px; }   /* sube/baja este valor a gusto */
+@media (min-width:860px){
+  .portrait{ max-height: 680px; }   /* algo más alta por ser 9:16 */
 }
 </style>
 </head>
@@ -191,13 +189,11 @@
   <section>
     <div class="shell grid-2">
       <div class="card">
-<img
-  class="portrait"
-  src="media/alejandra-alvarizaes.jpeg"
-  alt="Retrato de Alejandra Alvarizaes"
-  width="1400" height="935"
-  loading="lazy" decoding="async"
-  onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221400%22 height=%22935%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23F6F4EF%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%231F3B4D%22 font-size=%2232%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Imagen no disponible</text></svg>';">        <div style="margin-top:12px">
+<img class="portrait"
+     src="media/alejandra-alvarizaes.jpeg"
+     alt="Retrato de Alejandra Alvarizaes"
+     width="900" height="1600"  <!-- 9:16 -->
+     loading="lazy" decoding="async">
           <span class="badge">Empatía</span>
           <span class="badge">Escucha activa</span>
           <span class="badge">Acompañamiento respetuoso</span>
@@ -401,6 +397,7 @@
 </body>
 
 </html>
+
 
 
 
