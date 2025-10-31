@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Punto Psicológico | Espacio para el bienestar emocional</title>
+<meta name="description" content="Atención psicológica clínica en línea con Alejandra Alvarizaes. Ansiedad, autoestima, duelos, relaciones y desarrollo personal. Agenda tu sesión." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --salvia:#9DB5A3; --petroleo:#1F3B4D; --marfil:#F6F4EF; --humo:#6B7280; --mostaza:#C8A75D; --white:#fff;
+    --ff-title:"Poppins",system-ui; --ff-body:"Inter",system-ui; --ff-serif:"Crimson Text",serif;
+    --r:16px; --shadow:0 8px 28px rgba(0,0,0,.10);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--marfil);color:var(--petroleo)}
+  body{font-family:var(--ff-body);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .container{width:min(1100px,92%);margin-inline:auto}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:999px;font-weight:600}
+  .btn.primary{background:var(--petroleo);color:var(--white)}
+  .btn.ghost{border:1px solid rgba(31,59,77,.2);background:transparent}
+  .active{outline:2px solid color-mix(in srgb, var(--mostaza) 60%, var(--petroleo)); outline-offset:2px; border-radius:999px}
+
+  /* ============ NAV compacto + “Más” ============ */
+  header{position:sticky;top:0;z-index:100; background:rgba(246,244,239,.88);backdrop-filter:saturate(180%) blur(12px); border-bottom:1px dashed rgba(31,59,77,.15)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:12px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand svg{width:38px;height:38px;flex:none}
+  .brand .name{font-family:var(--ff-title);font-weight:700}
+  .brand .tag{font-size:.86rem;color:var(--humo)}
+
+  .menu.compact{display:flex;align-items:center;gap:10px;position:relative;flex-wrap:nowrap}
+  .menu.compact a.link{
+    padding:9px 12px;border-radius:999px;border:1px solid rgba(31,59,77,.12);
+    background:rgba(255,255,255,.7);white-space:nowrap
+  }
+  .menu.compact a.link:hover{background:var(--white)}
+  .menu.compact .btn{white-space:nowrap}
+
+  .more{position:relative}
+  .more-btn{
+    padding:9px 12px;border-radius:999px;border:1px solid rgba(31,59,77,.12);
+    background:var(--marfil);cursor:pointer;font:inherit;color:inherit
+  }
+  .more-menu{
+    position:absolute;right:0;top:calc(100% + 8px);min-width:240px;
+    background:var(--marfil);border:1px dashed rgba(31,59,77,.18);border-radius:16px;
+    box-shadow:var(--shadow);padding:8px;display:none;z-index:1000
+  }
+  .more-menu a{
+    display:block;padding:10px 12px;border-radius:12px;border:1px solid transparent;white-space:nowrap
+  }
+  .more-menu a:hover{background:var(--white);border-color:rgba(31,59,77,.1)}
+
+  .burger{display:none;border:1px solid rgba(31,59,77,.2);border-radius:999px;padding:10px;background:var(--white)}
+  .burger span{display:block;width:20px;height:2px;background:var(--petroleo);border-radius:2px}
+  .burger span+span{margin-top:4px}
+  #nav-toggle{display:none}
+
+  @media (max-width:1100px){
+    .menu.compact{display:none; position:absolute; left:4%; right:4%; top:64px; background:var(--marfil);
+      border:1px dashed rgba(31,59,77,.18); border-radius:18px; padding:12px; flex-wrap:wrap}
+    .menu.compact a.link, .menu.compact .more, .menu.compact .btn{flex:1 1 calc(50% - 8px); margin:4px 0}
+    #nav-toggle:checked + .menu.compact{display:flex}
+    .burger{display:inline-block}
+  }
+
+  /* ============ HERO / secciones ============ */
+  .hero{padding:56px 0 28px;position:relative;overflow:hidden}
+  .orbit{position:absolute; inset:-120px -120px auto auto; width:380px; height:380px; border-radius:50%; background: radial-gradient(circle at 55% 45%, rgba(157,181,163,.35), transparent 60%)}
+  .orbit2{position:absolute; inset:auto auto -140px -120px; width:320px; height:320px; border-radius:50%; background: radial-gradient(circle at 35% 55%, rgba(200,167,93,.25), transparent 60%)}
+  .hero-inner{display:grid;grid-template-columns:1fr;gap:22px;align-items:center}
+  .h1{font-family:var(--ff-title);font-weight:700;line-height:1.12;font-size:clamp(1.9rem,4.8vw,3rem);margin:0}
+  .lead{color:var(--humo);max-width:60ch}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+  .pattern{--s:18px; --d:2px;background: radial-gradient(circle at 1px 1px, rgba(31,59,77,.12) var(--d), transparent var(--d)) 0 0/var(--s) var(--s);border-radius:22px; min-height:220px; border:1px dashed rgba(31,59,77,.18); box-shadow:var(--shadow)}
+
+  section{padding:36px 0}
+  .sec-title{font-family:var(--ff-title);font-size:clamp(1.2rem,2.6vw,1.6rem);margin:0 0 12px;position:relative;padding-left:26px}
+  .sec-title::before{content:""; position:absolute; left:0; top:.45em; width:12px; height:12px; border-radius:50%; background:color-mix(in srgb, var(--salvia) 70%, white); box-shadow:0 0 0 6px rgba(157,181,163,.25)}
+
+  .cards{display:grid;grid-template-columns:1fr;gap:14px}
+  .card{background:var(--white);border:1px dashed rgba(31,59,77,.18);border-radius:22px;padding:0;box-shadow:var(--shadow);overflow:hidden}
+  .card .img{width:100%;height:170px;object-fit:cover;display:block}
+  .card .content{padding:16px}
+  .card h3{font-family:var(--ff-title);font-size:1.06rem;margin:0 0 6px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .chip{background:var(--petroleo);color:var(--white);padding:8px 12px;border-radius:999px;font-size:.86rem}
+
+  .about{display:grid;grid-template-columns:1fr;gap:16px}
+  .about .box{background:var(--white);border:1px dashed rgba(31,59,77,.18);border-radius:22px;padding:16px;box-shadow:var(--shadow)}
+  .steps{display:grid;grid-template-columns:1fr;gap:10px}
+  .step{display:flex;gap:12px;align-items:flex-start}
+  .step .num{width:32px;height:32px;border-radius:50%;background:var(--salvia);display:grid;place-items:center;color:var(--petroleo);font-weight:700}
+
+  .quote{background:radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--salvia) 22%, var(--marfil)) 0 40%, var(--marfil) 60%);border:1px dashed rgba(31,59,77,.18); border-radius:26px; padding:26px; text-align:center; font-family:var(--ff-serif); font-style:italic}
+
+  .mv{display:grid;grid-template-columns:1fr;gap:14px}
+  .mv .pill{background:var(--white);border:1px dashed rgba(31,59,77,.18);border-radius:22px;padding:16px;box-shadow:var(--shadow)}
+  .mv h3{margin:0 0 6px;font-family:var(--ff-title);font-size:1.02rem}
+
+  /* Medios */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .tab{padding:8px 12px;border:1px solid rgba(31,59,77,.18);border-radius:999px;background:var(--marfil);cursor:pointer}
+  .tab[aria-selected="true"]{background:var(--petroleo);color:var(--white);border-color:transparent}
+  .tabpanels>div{display:none}
+  .tabpanels>div[aria-hidden="false"]{display:block}
+  .media-grid{display:grid;grid-template-columns:1fr;gap:12px}
+  .media-card{background:var(--white);border:1px dashed rgba(31,59,77,.18);border-radius:18px;padding:12px;box-shadow:var(--shadow)}
+  .ratio{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px dashed rgba(31,59,77,.18)}
+  .ratio>iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+  /* Blog teaser */
+  .teaser{display:grid;grid-template-columns:1fr;gap:14px}
+  .post{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:center;background:var(--white);border:1px dashed rgba(31,59,77,.18);border-radius:20px;padding:10px;box-shadow:var(--shadow)}
+  .post img{width:100px;height:70px;object-fit:cover;border-radius:12px;border:1px dashed rgba(31,59,77,.18)}
+  .meta{font-size:.9rem;color:var(--humo)} .meta .dot{margin:0 6px}
+
+  /* Galería + Lightbox */
+  .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .gallery-grid img{width:100%;height:180px;object-fit:cover;border-radius:16px;border:1px dashed rgba(31,59,77,.18);background:#ddd;cursor:zoom-in}
+  @media (min-width:860px){
+    .hero-inner{grid-template-columns:1.2fr .8fr;gap:28px}
+    .cards{grid-template-columns:repeat(3,1fr)}
+    .about{grid-template-columns:1fr 1.2fr}
+    .steps{grid-template-columns:repeat(3,1fr)}
+    .mv{grid-template-columns:1fr 1fr}
+    .media-grid{grid-template-columns:repeat(3,1fr)}
+    .teaser{grid-template-columns:repeat(3,1fr)}
+    .gallery-grid{grid-template-columns:repeat(4,1fr)}
+  }
+
+  /* Lightbox modal */
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:200}
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:90vw;max-height:86vh;border-radius:12px}
+  .lb-controls{position:fixed;inset:auto 0 24px 0;display:flex;justify-content:center;gap:12px}
+  .lb-btn{background:rgba(255,255,255,.9);border:0;border-radius:999px;padding:10px 14px;cursor:pointer;font-weight:700}
+  .lb-close{position:fixed;top:16px;right:16px}
+
+  /* Footer */
+  footer{padding:24px 0;color:var(--humo);font-size:.95rem;border-top:1px dashed rgba(31,59,77,.15)}
+  .footer-social{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+  .footer-social a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(31,59,77,.18);background:var(--marfil)}
+
+  :focus-visible{outline:3px solid color-mix(in srgb, var(--mostaza) 60%, var(--petroleo));outline-offset:10px;border-radius:10px}
+/* --- Fix: dropdown "Más" en móvil no se salga del panel --- */
+@media (max-width:1100px){
+  /* El contenedor "Más" ya no es absoluto; que fluya dentro del panel */
+  .menu.compact .more{ position: static; flex: 1 1 100%; }
+
+  /* El menú se vuelve un bloque de ancho completo dentro del panel */
+  .menu.compact .more-menu{
+    position: relative;
+    inset: auto;
+    display: none;           /* se muestra con el mismo JS que ya tienes */
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 16px;
+    max-height: 55vh;        /* por si hay muchas opciones */
+    overflow: auto;
+  }
+
+  /* Botones del dropdown ocupan todo el ancho y no se cortan */
+  .menu.compact .more-menu a{
+    width: 100%;
+    white-space: nowrap;
+  }
+}
+/* Muestra el video “inset” para que se vea el patrón alrededor */
+.pattern.has-video{
+  position: relative;
+  aspect-ratio: 16 / 9;   /* mantiene proporción en todas las pantallas */
+  min-height: 0;          /* anula el min-height anterior */
+}
+
+/* El video va sobre el patrón, dejando un marco de puntos visible */
+.hero-video{
+  position: absolute;
+  inset: 12px;                     /* margen para que se vea el patrón */
+  width: calc(100% - 24px);
+  height: calc(100% - 24px);
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px dashed rgba(31,59,77,.18);
+  box-shadow: 0 8px 28px rgba(0,0,0,.10);
+}
+
+</style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+   <div class="container nav" role="navigation" aria-label="Principal">
+      <div class="brand">
+        <!-- Isotipo -->
+        <a href="/index.html">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <defs><clipPath id="psi"><path d="M58 90v-8c-12-3-18-12-18-25V44h10v13c0 9 3 15 10 17V44h-8v-8h22v8h-8v30c7-2 10-8 10-17V44h10v13c0 13-6 22-18 25v8h-10z"/></clipPath></defs>
+          <circle cx="42" cy="48" r="26" fill="#9DB5A3" opacity=".9"/>
+          <circle cx="78" cy="48" r="26" fill="#C8A75D" opacity=".9"/>
+          <circle cx="60" cy="30" r="26" fill="#1F3B4D" opacity=".9"/>
+          <rect x="20" y="16" width="80" height="80" fill="#F6F4EF" clip-path="url(#psi)"/>
+        </svg>
+        </a>
+        <div>
+          <div class="name"><a href="index.html">Punto Psicológico</a></div>
+          <div class="tag">Espacio para el bienestar emocional</div>
+        </div>
+      </div>
+
+      <!-- Toggle móvil -->
+      <label for="nav-toggle" class="burger" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </label>
+      <input id="nav-toggle" type="checkbox" hidden>
+
+      <!-- Menú compacto + MÁS -->
+      <nav class="menu compact" id="menu" aria-label="Secciones">
+        <!-- Links clave (una fila) -->
+        <a class="link" href="/servicios.html" data-spy>Servicios</a>
+        <a class="link" href="/sobre-mi.html" data-spy>Sobre mí</a>
+        <a class="link" href="/blog.html" data-spy>Blog</a>
+        <a class="link" href="/contacto.html" data-spy>Contacto</a>
+
+        <!-- Grupo Más -->
+        <div class="more">
+          <button class="more-btn" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu">Más ▾</button>
+          <div id="more-menu" class="more-menu" role="menu" aria-label="Más opciones">
+            <a role="menuitem" class="link" href="/modalidad.html" data-spy>Modalidad</a>
+            <a role="menuitem" class="link" href="/mision-y-vision.html" data-spy>Misión & Visión</a>
+            <a role="menuitem" class="link" href="/medios.html" data-spy>Medios</a>
+            <a role="menuitem" class="link" href="/galeria.html" data-spy>Galería</a>
+            <a role="menuitem" class="link" href="/faq.html" data-spy>FAQ</a>
+          </div>
+        </div>
+
+        <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="orbit" aria-hidden="true"></div>
+      <div class="orbit2" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div>
+          <h1 class="h1">Un punto de pausa para <span style="white-space:nowrap">escucharte.</span></h1>
+          <p class="lead">Atención psicológica clínica para acompañarte en ansiedad, autoestima, duelos, relaciones y desarrollo personal.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar sesión</a>
+            <a class="btn ghost" href="#servicios">Ver servicios</a>
+          </div>
+        </div>
+        <div class="pattern has-video" aria-label="Video de presentación sobre patrón decorativo">
+          <video
+            class="hero-video"
+            src="/media/Madison%20-%20Vloguera.mp4"
+            playsinline
+            muted
+            autoplay
+            loop
+            controls
+            preload="metadata"
+            poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1280' height='720'><rect width='100%' height='100%' fill='%23F6F4EF'/></svg>'">
+              Tu navegador no soporta video en HTML5.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios">
+      <div class="container">
+        <h2 class="sec-title">Servicios</h2>
+        <p style="color:var(--humo);margin:-4px 0 10px">Acompañamiento humano y práctico.</p>
+        <div class="cards" role="list">
+          <article class="card" role="listitem">
+            <img class="img" src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=1600&auto=format&fit=crop" alt="Terapia individual — conversación en línea">
+            <div class="content">
+              <h3>Terapia individual</h3>
+              <p>Adultos y adolescentes. Sesiones personalizadas para comprender, ordenar y fortalecer.</p>
+            </div>
+          </article>
+          <article class="card" role="listitem">
+            <img class="img" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1600&auto=format&fit=crop" alt="Orientación emocional — acompañamiento cercano">
+            <div class="content">
+              <h3>Orientación emocional</h3>
+              <p>Herramientas concretas para atravesar momentos difíciles con claridad y sostén.</p>
+            </div>
+          </article>
+          <article class="card" role="listitem">
+            <img class="img" src="https://images.unsplash.com/photo-1526662092594-e98c1e356d6a?q=80&w=1600&auto=format&fit=crop" alt="Evaluaciones psicológicas y psicométricas — instrumentos y reportes">
+            <div class="content">
+              <h3>Evaluaciones psicológicas y psicométricas</h3>
+              <p>Instrumentos válidos para comprender con rigor.</p>
+            </div>
+          </article>
+        </div>
+        <div class="chips" aria-label="Especialidades">
+          <span class="chip">Ansiedad</span><span class="chip">Autoestima</span><span class="chip">Duelos</span><span class="chip">Relaciones</span><span class="chip">Desarrollo personal</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ / MODALIDAD -->
+    <section id="sobre-mi">
+      <div class="container about">
+        <div class="box">
+          <h2 class="sec-title">Sobre mí</h2>
+          <p>Soy <strong>Alejandra Alvarizaes</strong>, psicóloga clínica. Mi enfoque integra lo humanista y lo cognitivo-conductual, con empatía, escucha activa y acompañamiento respetuoso.</p>
+          <p style="color:var(--humo)">Busco ayudarte a comprender tus emociones, fortalecer tu autoestima y desarrollar herramientas para afrontar los desafíos con equilibrio.</p>
+          <p><a class="btn ghost" href="/sobre-mi.html">Conoce mi enfoque</a></p>
+        </div>
+        <div class="box" id="modalidad">
+          <h2 class="sec-title">Modalidad & Horarios</h2>
+          <ul class="steps" style="list-style:none;padding:0;margin:0">
+            <li class="step"><span class="num">1</span><div><strong>Agenda tu espacio</strong><br/>Lunes a viernes, 8:00–17:00.</div></li>
+            <li class="step"><span class="num">2</span><div><strong>Conexión segura</strong><br/>Sesión en línea por videollamada privada.</div></li>
+            <li class="step"><span class="num">3</span><div><strong>Herramientas claras</strong><br/>Avanza con pasos prácticos y acompañamiento.</div></li>
+          </ul>
+          <p style="margin-top:10px"><a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar sesión</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISIÓN & VISIÓN -->
+    <section id="mision-vision">
+      <div class="container">
+        <h2 class="sec-title">Misión & Visión</h2>
+        <div class="mv">
+          <div class="pill">
+            <h3>Misión</h3>
+            <p>Brindar un espacio seguro, humano y confidencial donde cada persona pueda reconectarse consigo misma, comprender sus emociones y construir herramientas que le permitan alcanzar equilibrio, bienestar y plenitud emocional.</p>
+          </div>
+          <div class="pill">
+            <h3>Visión</h3>
+            <p>Ser un centro de referencia en el acompañamiento psicológico integral, reconocido por su calidez humana, compromiso ético y resultados transformadores en la vida emocional de las personas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRASE -->
+    <section aria-labelledby="frase">
+      <div class="container">
+        <div class="quote" id="frase">“El bienestar emocional comienza cuando decides escucharte.”</div>
+      </div>
+    </section>
+
+    <!-- MEDIOS (VIDEOS / PODCASTS) -->
+    <section id="medios">
+      <div class="container">
+        <h2 class="sec-title">Galería de medios</h2>
+        <div class="tabs" role="tablist" aria-label="Medios">
+          <button class="tab" role="tab" id="tab-videos" aria-controls="panel-videos" aria-selected="true">Videos</button>
+          <button class="tab" role="tab" id="tab-podcasts" aria-controls="panel-podcasts" aria-selected="false">Podcasts</button>
+        </div>
+        <div class="tabpanels">
+          <!-- VIDEOS -->
+          <div id="panel-videos" role="tabpanel" aria-labelledby="tab-videos" aria-hidden="false">
+            <div class="media-grid">
+              <div class="media-card">
+                <div class="ratio">
+                  <iframe src="https://www.youtube.com/embed/MiZ3DW4RG4Q" title="Blindaje emocional mediante la autorregulación | TEDx" allowfullscreen></iframe>
+                </div>
+                <p class="small">Blindaje emocional mediante la autorregulación | Vero Marcos | TEDxCoatzacoalcos</p>
+              </div>
+              <div class="media-card">
+                <div class="ratio">
+                  <iframe src="https://www.youtube.com/embed/HxXvGpLJCM8" title="3 CLAVES para el DESARROLLO PERSONAL | Brian Tracy" allowfullscreen></iframe>
+                </div>
+                <p class="small">3 CLAVES para el DESARROLLO PERSONAL 🧠 | Brian Tracy</p>
+              </div>
+              <div class="media-card">
+                <div class="ratio">
+                  <iframe src="https://www.youtube.com/embed/jIgmhgGak2k" title="Fortalecer la AUTOESTIMA | Mario Alonso Puig" allowfullscreen></iframe>
+                </div>
+                <p class="small">Fortalecer la AUTOESTIMA para gestionar las CRÍTICAS | Mario Alonso Puig</p>
+              </div>
+            </div>
+          </div>
+          <!-- PODCASTS -->
+          <div id="panel-podcasts" role="tabpanel" aria-labelledby="tab-podcasts" aria-hidden="true">
+            <div class="media-grid">
+              <div class="media-card">
+                <div class="ratio">
+                  <iframe allow="autoplay *; encrypted-media *;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+                    src="https://embed.podcasts.apple.com/es/podcast/ejercicio-de-escucha-activa/id1571328022?i=1000534148134"
+                    title="Ejercicio de escucha activa"></iframe>
+                </div>
+                <p class="small">Ejercicio de escucha activa</p>
+              </div>
+              <div class="media-card">
+                <div class="ratio">
+                  <iframe allow="autoplay *; encrypted-media *;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+                    src="https://embed.podcasts.apple.com/es/podcast/primeros-pasos-para-superar-la-ansiedad-completamente/id1517059592?i=1000697859916"
+                    title="Primeros pasos para SUPERAR LA ANSIEDAD completamente"></iframe>
+                </div>
+                <p class="small">Primeros pasos para SUPERAR LA ANSIEDAD completamente</p>
+              </div>
+              <div class="media-card">
+                <div class="ratio">
+                  <iframe allow="autoplay *; encrypted-media *;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+                    src="https://embed.podcasts.apple.com/es/podcast/autoestima-pr%C3%A1ctica/id825713023?i=1000679061415"
+                    title="Autoestima práctica"></iframe>
+                </div>
+                <p class="small">Autoestima práctica</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WEBINARS -->
+    <section id="webinars">
+      <div class="container">
+        <h2 class="sec-title">Webinars</h2>
+        <div class="media-grid">
+          <div class="media-card">
+            <div class="ratio">
+              <iframe src="https://www.youtube.com/embed/mndyBpiZE3A" title="Webinar: ¿Cómo regular la ansiedad...?" allowfullscreen></iframe>
+            </div>
+            <p class="small">Webinar Psicología: “¿Cómo regular la ansiedad de mi familia durante el aislamiento social?”</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG TEASER -->
+    <section id="blog">
+      <div class="container">
+        <h2 class="sec-title">Del blog</h2>
+        <div class="teaser">
+          <article class="post">
+            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop" alt="Ansiedad — respiración y pausa">
+            <div>
+              <h3 style="margin:0 0 6px;font-family:var(--ff-title);font-size:1.02rem;">
+                <a href="/que-es-la-ansiedad.html">¿Qué es la ansiedad y cómo empezar a manejarla?</a>
+              </h3>
+              <div class="meta">12 Oct 2025 <span class="dot">•</span> 4 min</div>
+            </div>
+          </article>
+          <article class="post">
+            <img src="https://images.unsplash.com/photo-1526662092594-e98c1e356d6a?q=80&w=800&auto=format&fit=crop" alt="Autoestima — escritura y reflexión">
+            <div>
+              <h3 style="margin:0 0 6px;font-family:var(--ff-title);font-size:1.02rem;">
+                <a href="/autoestima-saludable.html">Autoestima saludable: 3 ejercicios prácticos</a>
+              </h3>
+              <div class="meta">05 Oct 2025 <span class="dot">•</span> 3 min</div>
+            </div>
+          </article>
+          <article class="post">
+            <img 
+              src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&dpr=1" 
+              alt="Duelo — notas y planeación" loading="lazy"
+              onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23F6F4EF%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%231F3B4D%22 font-size=%2222%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Imagen no disponible</text></svg>';">
+            <div>
+              <h3 style="margin:0 0 6px;font-family:var(--ff-title);font-size:1.02rem;">
+                <a href="/duelo-que-sentir.html">El duelo y el permiso para sentir</a>
+              </h3>
+              <div class="meta">28 Sep 2025 <span class="dot">•</span> 5 min</div>
+            </div>
+          </article>
+        </div>
+        <p style="margin-top:10px"><a class="btn ghost" href="/blog.html">Ver todos los artículos</a></p>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria">
+      <div class="container">
+        <h2 class="sec-title">Galería</h2>
+        <div class="gallery-grid" id="gallery">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop" alt="Espacio de calma">
+          <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200&auto=format&fit=crop" alt="Escritorio de trabajo">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80" alt="Momento de calma junto a un lago" width="1400" height="933" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221400%22 height=%22933%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23F6F4EF%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%231F3B4D%22 font-size=%2232%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Imagen no disponible</text></svg>';">
+          <img 
+            src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&dpr=1" 
+            alt="Notas y planeación" loading="lazy"
+            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23F6F4EF%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%231F3B4D%22 font-size=%2222%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Imagen no disponible</text></svg>';">
+          <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=1200&auto=format&fit=crop" alt="Lecturas de apoyo">
+<img
+  src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=80"
+  alt="Momentos de calma"
+  width="1400" height="933"
+  loading="lazy" decoding="async" referrerpolicy="no-referrer"
+  onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221400%22 height=%22933%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23F6F4EF%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%231F3B4D%22 font-size=%2232%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Imagen no disponible</text></svg>';">
+          <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop" alt="Círculos e identidad visual">
+          <img src="https://images.unsplash.com/photo-1517837016564-bfc3ffd67455?q=80&w=1200&auto=format&fit=crop" alt="Recursos psicoeducativos">
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <div class="container contact">
+        <div class="panel contact-card">
+          <h2 class="sec-title">Contacto</h2>
+          <p class="small">Contáctanos: estamos para escucharte y orientarte. Elige el canal que prefieras y agenda tu espacio.</p>
+          <div class="cta-buttons" style="display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+              <!-- WA icon -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" stroke="currentColor"/><path d="M16.2 14.4c-.3.9-1.8 1.6-2.5 1.6-.6 0-1.4-.2-2.6-.9-2.2-1.3-3.6-3.6-3.7-3.8-.1-.2-.9-1.2-.9-2.2 0-1 .5-1.5.7-1.7.2-.2.4-.3.6-.3h.4c.1 0 .3 0 .4.3l.6 1.4c.1.3.1.4 0 .6 0 .2-.1.3-.2.5l-.2.2c-.1.1-.2.3-.1.4.1.2.6 1.1 1.3 1.8.9.9 1.8 1.2 2 .1l.5-.6c.1-.1.3-.2.5-.2.2 0 .3 0 .5.1l1.3.6c.3.1.4.2.5.3.1.2.1.5 0 .7Z" fill="currentColor"/></svg>
+              WhatsApp
+            </a>
+            <a class="btn ghost" href="mailto:aalvarizaes@miumg.edu.gt" aria-label="Escríbenos por correo">
+              <!-- mail icon -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16v12H4z" stroke="currentColor"/><path d="M4 7l8 6 8-6" stroke="currentColor"/></svg>
+              Correo
+            </a>
+          </div>
+          <details>
+            <summary class="small">O envíanos un mensaje rápido</summary>
+            <form action="https://formspree.io/f/tu-id" method="POST" style="margin-top:10px">
+              <label class="small">Nombre<br><input required name="nombre" style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(31,59,77,.25)"></label><br><br>
+              <label class="small">Email<br><input required type="email" name="email" style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(31,59,77,.25)"></label><br><br>
+              <label class="small">Mensaje<br><textarea required name="mensaje" rows="4" style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(31,59,77,.25)"></textarea></label><br><br>
+              <button class="btn primary" type="submit">Enviar</button>
+            </form>
+          </details>
+          <p class="small">Confidencialidad garantizada. Responderemos a la brevedad en horario laboral (L–V, 8:00–17:00).</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>© <span id="y"></span> Punto Psicológico · Hecho con cuidado · <a href="/aviso-de-privacidad">Aviso de privacidad</a></div>
+      <div class="footer-social" aria-label="Redes sociales">
+        <a href="https://instagram.com/punto.psicológico" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor"/><circle cx="12" cy="12" r="4" stroke="currentColor"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+          Instagram
+        </a>
+        <a href="https://facebook.com/punto.psicológico" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z" fill="currentColor"/></svg>
+          Facebook
+        </a>
+        <a href="https://wa.me/50245630621" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" stroke="currentColor"/><path d="M16.2 14.4c-.3.9-1.8 1.6-2.5 1.6-.6 0-1.4-.2-2.6-.9-2.2-1.3-3.6-3.6-3.7-3.8-.1-.2-.9-1.2-.9-2.2 0-1 .5-1.5.7-1.7.2-.2.4-.3.6-.3h.4c.1 0 .3 0 .4.3l.6 1.4c.1.3.1.4 0 .6 0 .2-.1.3-.2.5l-.2.2c-.1.1-.2.3-.1.4.1.2.6 1.1 1.3 1.8.9.9 1.8 1.2 2 .1l.5-.6c.1-.1.3-.2.5-.2.2 0 .3 0 .5.1l1.3.6c.3.1.4.2.5.3.1.2.1.5 0 .7Z" fill="currentColor"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  // Año
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Dropdown "Más"
+  const moreBtn = document.querySelector('.more-btn');
+  const moreMenu = document.getElementById('more-menu');
+  function closeMore(){ if(moreMenu){ moreMenu.style.display='none'; moreBtn?.setAttribute('aria-expanded','false'); } }
+  function toggleMore(e){
+    e.stopPropagation();
+    const open = moreMenu.style.display === 'block';
+    moreMenu.style.display = open ? 'none' : 'block';
+    moreBtn.setAttribute('aria-expanded', String(!open));
+  }
+  moreBtn?.addEventListener('click', toggleMore);
+  document.addEventListener('click', (e)=>{ if(!moreMenu.contains(e.target) && !moreBtn.contains(e.target)) closeMore(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMore(); });
+
+  // Tabs Medios
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.tabpanels > div');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.setAttribute('aria-selected','false'));
+    panels.forEach(p => p.setAttribute('aria-hidden','true'));
+    t.setAttribute('aria-selected','true');
+    document.getElementById(t.getAttribute('aria-controls')).setAttribute('aria-hidden','false');
+  }));
+
+  // -------- Lightbox Galería --------
+  const gallery = document.getElementById('gallery');
+  const lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.innerHTML = `
+    <button class="lb-btn lb-close" aria-label="Cerrar (Esc)">✕</button>
+    <img alt="">
+    <div class="lb-controls">
+      <button class="lb-btn lb-prev" aria-label="Anterior (←)">←</button>
+      <button class="lb-btn lb-next" aria-label="Siguiente (→)">→</button>
+    </div>`;
+  document.body.appendChild(lb);
+
+  const lbImg = lb.querySelector('img');
+  const btnPrev = lb.querySelector('.lb-prev');
+  const btnNext = lb.querySelector('.lb-next');
+  const btnClose = lb.querySelector('.lb-close');
+  let imgs = [], idx = 0;
+
+  function openLB(i){
+    idx = i;
+    lbImg.src = imgs[idx].src;
+    lbImg.alt = imgs[idx].alt || '';
+    lb.classList.add('open');
+  }
+  function navLB(step){
+    idx = (idx + step + imgs.length) % imgs.length;
+    lbImg.src = imgs[idx].src;
+    lbImg.alt = imgs[idx].alt || '';
+  }
+  function closeLB(){ lb.classList.remove('open'); }
+
+  if(gallery){
+    imgs = Array.from(gallery.querySelectorAll('img'));
+    imgs.forEach((im,i)=> im.addEventListener('click', ()=> openLB(i)));
+  }
+  btnPrev.addEventListener('click', ()=> navLB(-1));
+  btnNext.addEventListener('click', ()=> navLB(1));
+  btnClose.addEventListener('click', closeLB);
+  lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLB(); });
+  document.addEventListener('keydown', (e)=>{
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') closeLB();
+    if(e.key==='ArrowLeft') navLB(-1);
+    if(e.key==='ArrowRight') navLB(1);
+  });
+
+  // -------- Scrollspy (estado activo por sección) --------
+  const spyLinks = document.querySelectorAll('[data-spy]');
+  const hrefToLink = {};
+  spyLinks.forEach(a => { hrefToLink[a.getAttribute('href')] = a; });
+
+  const sections = ['#servicios','#sobre-mi','#modalidad','#mision-vision','#medios','#webinars','#blog','#galeria','#contacto','#faq']
+    .map(id => document.querySelector(id))
+    .filter(Boolean);
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const id = '#' + entry.target.id;
+      const link = hrefToLink[id];
+      if(!link) return;
+      if(entry.isIntersecting && entry.intersectionRatio >= 0.5){
+        // limpiar
+        Object.values(hrefToLink).forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, {rootMargin:'0px 0px -40% 0px', threshold:[0.5]});
+
+  sections.forEach(sec => io.observe(sec));
+
+  // Scroll suave y cierre de “Más” al click
+  spyLinks.forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      const href = a.getAttribute('href');
+      if(href.startsWith('#')){
+        e.preventDefault();
+        document.querySelector(href)?.scrollIntoView({behavior:'smooth', block:'start'});
+        closeMore();
+        // En móvil, cerrar menú hamburguesa
+        const navToggle = document.getElementById('nav-toggle');
+        if(navToggle?.checked) navToggle.checked = false;
+      }
+    });
+  });
+</script>
+</body>
+</html>

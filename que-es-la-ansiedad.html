@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>¿Qué es la ansiedad y cómo empezar a manejarla? | Punto Psicológico</title>
+<meta name="description" content="Ansiedad: qué es, para qué sirve y cuándo deja de ser útil. Señales comunes y 6 herramientas prácticas para empezar a manejarla hoy." />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+  /* ========= Paleta, tipografías, contenedores ========= */
+  :root{
+    --salvia:#9DB5A3; --petroleo:#1F3B4D; --marfil:#F6F4EF; --humo:#6B7280; --mostaza:#C8A75D; --white:#fff;
+    --ff-title:"Poppins",system-ui; --ff-body:"Inter",system-ui; --ff-serif:"Crimson Text",serif;
+    --shadow:0 8px 28px rgba(0,0,0,.10);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--marfil);color:var(--petroleo)}
+  body{font-family:var(--ff-body);line-height:1.75}
+  a{color:inherit;text-decoration:none}
+
+  /* En este post: header/footer a 1100px; artículo a 800px */
+  .shell{width:min(1100px,92%);margin-inline:auto}
+  .container{width:min(800px,92%);margin-inline:auto}
+
+  /* ====== Botones, utilidades ====== */
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;font-weight:600}
+  .btn.primary{background:var(--petroleo);color:#fff}
+  .btn.ghost{border:1px solid rgba(31,59,77,.2);background:#fff}
+  .small{font-size:.92rem;color:var(--humo)}
+
+  /* ====== Header compacto + menú “Más ▾” (idéntico al sitio) ====== */
+  header{position:sticky;top:0;z-index:100;background:rgba(246,244,239,.88);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px dashed rgba(31,59,77,.15)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:12px}
+  .brand{display:flex;gap:10px;align-items:center}
+  .brand svg{width:38px;height:38px}
+  .brand .name{font-family:var(--ff-title);font-weight:700}
+  .brand .tag{font-size:.86rem;color:var(--humo)}
+  .menu.compact{display:flex;align-items:center;gap:10px;position:relative;flex-wrap:nowrap}
+  .menu.compact a.link{padding:9px 12px;border-radius:999px;border:1px solid rgba(31,59,77,.12);background:rgba(255,255,255,.7);white-space:nowrap}
+  .menu.compact a.link:hover{background:var(--white)}
+  .more{position:relative}
+  .more-btn{padding:9px 12px;border-radius:999px;border:1px solid rgba(31,59,77,.12);background:var(--marfil);cursor:pointer;font:inherit;color:inherit}
+  .more-menu{position:absolute;right:0;top:calc(100% + 8px);min-width:240px;background:var(--marfil);border:1px dashed rgba(31,59,77,.18);border-radius:16px;box-shadow:var(--shadow);padding:8px;display:none;z-index:1000}
+  .more-menu a{display:block;padding:10px 12px;border-radius:12px;border:1px solid transparent;white-space:nowrap}
+  .more-menu a:hover{background:var(--white);border-color:rgba(31,59,77,.1)}
+  .burger{display:none;border:1px solid rgba(31,59,77,.2);border-radius:999px;padding:10px;background:#fff}
+  .burger span{display:block;width:20px;height:2px;background:var(--petroleo);border-radius:2px}
+  .burger span+span{margin-top:4px}
+  #nav-toggle{display:none}
+  @media (max-width:1100px){
+    .menu.compact{display:none;position:absolute;left:4%;right:4%;top:64px;background:var(--marfil);border:1px dashed rgba(31,59,77,.18);border-radius:18px;padding:12px;flex-wrap:wrap}
+    .menu.compact a.link,.menu.compact .more,.menu.compact .btn{flex:1 1 calc(50% - 8px);margin:4px 0}
+    #nav-toggle:checked + .menu.compact{display:flex}
+    .burger{display:inline-block}
+  }
+
+  /* ====== Hero / títulos ====== */
+  .hero{padding:44px 0 10px}
+  .title{font-family:var(--ff-title);font-weight:700;font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.2;margin:0}
+  .meta{color:var(--humo);font-size:.95rem;margin-top:6px}
+
+  /* ====== Artículo ====== */
+  .wrap-article{background:#fff;border:1px dashed rgba(31,59,77,.18);border-radius:22px;box-shadow:var(--shadow);padding:18px}
+  .cover{width:100%;height:320px;object-fit:cover;border-radius:14px;border:1px dashed rgba(31,59,77,.12)}
+  article h2{font-family:var(--ff-title);font-size:1.2rem;margin:18px 0 8px}
+  article h3{font-family:var(--ff-title);font-size:1.06rem;margin:14px 0 6px}
+  article p{margin:12px 0}
+  article ul{margin:10px 0 10px 18px}
+  article li{margin:6px 0}
+  article blockquote{
+    font-family:var(--ff-serif);font-style:italic;
+    background:radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--salvia) 18%, var(--marfil)) 0 40%, var(--marfil) 60%);
+    border:1px dashed rgba(31,59,77,.18);border-radius:16px;padding:14px;margin:16px 0
+  }
+
+  /* Tags y compartir */
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .tag{display:inline-flex;align-items:center;height:30px;padding:0 10px;line-height:1;border-radius:999px;background:var(--petroleo);color:#fff;font-size:.86rem}
+  .share{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .share a{border:1px solid rgba(31,59,77,.2);border-radius:999px;padding:8px 10px;background:#fff}
+
+  .nextprev{display:flex;justify-content:space-between;gap:10px;margin:18px 0}
+
+  /* ====== Footer (idéntico al sitio) ====== */
+  footer{padding:24px 0;color:var(--humo);font-size:.95rem;border-top:1px dashed rgba(31,59,77,.15)}
+  .footer-social{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+  .footer-social a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(31,59,77,.18);background:var(--marfil)}
+
+  /* Accesibilidad */
+  :focus-visible{outline:3px solid color-mix(in srgb, var(--mostaza) 60%, var(--petroleo));outline-offset:8px;border-radius:10px}
+  /* Evitar conflicto: los "tags" del artículo solo dentro de .tags */
+    .tags .tag{
+    display:inline-flex; align-items:center; height:30px; padding:0 10px; line-height:1;
+    border-radius:999px; background:var(--petroleo); color:#fff; font-size:.86rem;
+    }
+
+    /* Normaliza el eslogan del header (no pastilla) */
+    .brand .tag{
+    display:block; height:auto; padding:0; line-height:inherit;
+    background:transparent; border:0; color:var(--humo); font-size:.86rem;
+    }
+    /* --- Fix: dropdown "Más" en móvil no se salga del panel --- */
+@media (max-width:1100px){
+  /* El contenedor "Más" ya no es absoluto; que fluya dentro del panel */
+  .menu.compact .more{ position: static; flex: 1 1 100%; }
+
+  /* El menú se vuelve un bloque de ancho completo dentro del panel */
+  .menu.compact .more-menu{
+    position: relative;
+    inset: auto;
+    display: none;           /* se muestra con el mismo JS que ya tienes */
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 16px;
+    max-height: 55vh;        /* por si hay muchas opciones */
+    overflow: auto;
+  }
+
+  /* Botones del dropdown ocupan todo el ancho y no se cortan */
+  .menu.compact .more-menu a{
+    width: 100%;
+    white-space: nowrap;
+  }
+}
+
+</style>
+</head>
+
+<body class="blog-post">
+  <!-- Header (idéntico) -->
+  <header>
+    <div class="shell nav" role="navigation" aria-label="Principal">
+      <div class="brand">
+        <!-- Isotipo -->
+        <a href="/index.html">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <defs><clipPath id="psi"><path d="M58 90v-8c-12-3-18-12-18-25V44h10v13c0 9 3 15 10 17V44h-8v-8h22v8h-8v30c7-2 10-8 10-17V44h10v13c0 13-6 22-18 25v8h-10z"/></clipPath></defs>
+          <circle cx="42" cy="48" r="26" fill="#9DB5A3" opacity=".9"/>
+          <circle cx="78" cy="48" r="26" fill="#C8A75D" opacity=".9"/>
+          <circle cx="60" cy="30" r="26" fill="#1F3B4D" opacity=".9"/>
+          <rect x="20" y="16" width="80" height="80" fill="#F6F4EF" clip-path="url(#psi)"/>
+        </svg>
+        </a>
+        <div>
+          <div class="name"><a href="index.html">Punto Psicológico</a></div>
+          <div class="tag">Espacio para el bienestar emocional</div>
+        </div>
+      </div>
+
+      <!-- Toggle móvil -->
+      <label for="nav-toggle" class="burger" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </label>
+      <input id="nav-toggle" type="checkbox" hidden>
+
+      <!-- Menú compacto + Más -->
+      <nav class="menu compact" id="menu" aria-label="Secciones">
+        <a class="link" href="/servicios.html">Servicios</a>
+        <a class="link" href="/sobre-mi.html">Sobre mí</a>
+        <a class="link" href="/modalidad.html">Modalidad</a>
+        <div class="more">
+            <button class="more-btn" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu">Más ▾</button>
+            <div id="more-menu" class="more-menu" role="menu" aria-label="Más opciones">
+            <a role="menuitem" class="link" href="/blog.html" aria-current="page">Blog</a>
+            <a role="menuitem" class="link" href="/#mision-vision">Misión & Visión</a>
+            <a role="menuitem" class="link" href="/#medios">Medios</a>
+            <a role="menuitem" class="link" href="/#galeria">Galería</a>
+            <a role="menuitem" class="link" href="/faq.html">FAQ</a>
+            <a role="menuitem" class="link" href="/contacto.html">Contacto</a>
+            </div>
+        </div>
+        <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar</a>
+       </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1 class="title" id="post-title">¿Qué es la ansiedad y cómo empezar a manejarla?</h1>
+        <div class="meta" id="post-meta">
+          <time datetime="2025-10-12" id="post-date">12 Oct 2025</time>
+          <span class="dot" style="margin:0 6px">•</span>
+          <span id="post-author">Por Alejandra Alvarizaes</span>
+          <span class="dot" style="margin:0 6px">•</span>
+          <span id="readtime" title="Tiempo estimado de lectura">— min</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Artículo -->
+    <section>
+      <div class="container wrap-article">
+        <img class="cover" id="post-cover" src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=1600&auto=format&fit=crop" alt="Persona respirando profundamente frente a una ventana">
+        <article id="post-body">
+          <p><em>La ansiedad no es “ser débil” ni “no poder con la vida”. Es una respuesta normal de nuestro sistema para protegernos. El reto aparece cuando se activa demasiado o en momentos en los que no necesitamos ese nivel de alerta.</em></p>
+
+          <h2>Ansiedad: un sistema de alarma útil… hasta que deja de serlo</h2>
+          <p>En esencia, la ansiedad es un mecanismo de supervivencia. Tu cuerpo se prepara para actuar: acelera el corazón, sube la respiración, concentra la atención en posibles riesgos. En pequeñas dosis, te ayuda a rendir y cuidarte.</p>
+          <p>Se vuelve problemática cuando es <strong>intensa, frecuente o persistente</strong>, interfiere con el sueño, el trabajo o tus relaciones, o aparece incluso sin un motivo claro.</p>
+
+          <h2>Señales comunes</h2>
+          <ul>
+            <li><strong>Físicas:</strong> palpitaciones, tensión muscular, respiración rápida, manos sudorosas, molestias gastrointestinales, temblores.</li>
+            <li><strong>Emocionales:</strong> inquietud, miedo a perder el control, irritabilidad, sensación de “no puedo con esto”.</li>
+            <li><strong>Cognitivas:</strong> pensamientos catastróficos, anticipar lo peor, dificultad para concentrarte.</li>
+            <li><strong>Conductuales:</strong> evitar situaciones, posponer, buscar “seguridades” constantes.</li>
+          </ul>
+
+          <h2>Lo que mantiene la ansiedad</h2>
+          <p>En un círculo ansioso típico aparecen tres engranajes:</p>
+          <ul>
+            <li><strong>Interpretaciones alarmistas</strong> (“si me equivoco, será un desastre”).</li>
+            <li><strong>Sensaciones corporales</strong> que se perciben como peligro (“late fuerte → algo anda mal”).</li>
+            <li><strong>Evitar</strong> (no voy, no pregunto, no envío), lo que alivia a corto plazo pero confirma el miedo a largo plazo.</li>
+          </ul>
+
+          <blockquote>Romper el ciclo no es apagar la ansiedad de golpe, sino aprender a regularla y volver a elegir con más claridad.</blockquote>
+
+          <h2>6 herramientas para empezar hoy</h2>
+          <p>No necesitas hacerlas todas a la vez. Elige una o dos, pruébalas por una semana y observa qué te funciona.</p>
+
+          <h3>1) Respiración 4-4-6 (regulación rápida)</h3>
+          <p>Inhala por la nariz contando 4, sostén 4, exhala por la boca contando 6. Repite 2–3 minutos. La exhalación más larga envía la señal de “es seguro bajar revoluciones”.</p>
+
+          <h3>2) Aterrizaje 5-4-3-2-1 (cuando la mente corre)</h3>
+          <p>Nombra: 5 cosas que ves, 4 que sientes con el tacto, 3 que oyes, 2 que hueles, 1 que saboreas. Vuelve al presente a través de tus sentidos.</p>
+
+          <h3>3) Diario de ansiedad (haz visible el patrón)</h3>
+          <ul>
+            <li><strong>Situación:</strong> ¿qué pasó?</li>
+            <li><strong>Pensamiento automático:</strong> ¿qué te dijiste?</li>
+            <li><strong>Emoción + intensidad:</strong> (0–100)</li>
+            <li><strong>Respuesta alternativa:</strong> una versión más realista y amable.</li>
+            <li><strong>Pequeña acción:</strong> ¿qué harás distinto la próxima vez?</li>
+          </ul>
+
+          <h3>4) Exposición gradual (pasos pequeños, repetidos)</h3>
+          <p>Haz una escalera de situaciones (de 0 a 10 en dificultad). Empieza por un 3–4, repítelo varias veces hasta que el malestar baje, y solo entonces sube un escalón. <em>No es lanzarte al 10</em>, es entrenar tu sistema a tolerar y comprobar que puedes.</p>
+
+          <h3>5) Higiene de estímulos (menos gasolina para el fuego)</h3>
+          <ul>
+            <li><strong>Noticias y redes:</strong> define ventanas de uso, no “todo el día”.</li>
+            <li><strong>Activación física:</strong> caminar 10–15 min ayuda a descargar.</li>
+            <li><strong>Rutinas de sueño:</strong> hora regular, luz baja, pantalla fuera de la cama.</li>
+          </ul>
+
+          <h3>6) Auto-diálogo útil (del “todo o nada” a lo posible)</h3>
+          <p>Prueba reemplazar pensamientos con alternativas funcionales:</p>
+          <ul>
+            <li>“Si me equivoco, será un desastre” → “Puedo equivocarme y aun así resolverlo.”</li>
+            <li>“No aguanto esta sensación” → “Es incómoda, pero pasajera; puedo acompañarla.”</li>
+            <li>“Tengo que controlarlo todo” → “Puedo influir en lo importante y soltar lo demás.”</li>
+          </ul>
+
+          <h2>¿Cuándo pedir ayuda profesional?</h2>
+          <p>Si los síntomas son muy intensos, duran semanas, afectan tu trabajo/estudios/relaciones o aparecen ataques de pánico, <strong>buscar acompañamiento clínico es una buena idea</strong>. La terapia ofrece herramientas personalizadas y un espacio seguro para practicarlas.</p>
+          <p class="small">Nota: Este artículo brinda información general. No sustituye evaluación ni tratamiento profesional.</p>
+
+          <h2>Un paso concreto para esta semana</h2>
+          <ul>
+            <li>Elige una técnica de regulación (4-4-6 o 5-4-3-2-1) y úsala 2 veces al día.</li>
+            <li>Completa un registro breve de ansiedad 3 veces (situación, pensamiento, emoción, alternativa, acción).</li>
+            <li>Da un paso de tu escalera (nivel 3–4). Celebra el intento, no la perfección.</li>
+          </ul>
+
+          <p>Si te gustaría trabajar esto con acompañamiento, puedo ayudarte a diseñar un plan claro y amable con tu ritmo.</p>
+        </article>
+
+        <!-- Tags (oscuro) -->
+        <div class="tags">
+          <span class="tag">ansiedad</span>
+          <span class="tag">respiración</span>
+          <span class="tag">autocuidado</span>
+        </div>
+
+        <!-- Compartir -->
+        <div class="share">
+          <a id="share-wapp" href="#" target="_blank" rel="noopener">Compartir por WhatsApp</a>
+          <a id="share-fb" href="#" target="_blank" rel="noopener">Compartir en Facebook</a>
+          <a id="share-x" href="#" target="_blank" rel="noopener">Compartir en X</a>
+        </div>
+
+        <!-- Navegación -->
+        <div class="nextprev">
+          <a id="prev" href="/blog/autoestima-saludable.html">← Anterior</a>
+          <a id="next" href="/blog/duelo-que-sentir.html">Siguiente →</a>
+        </div>
+
+        <!-- CTA local -->
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar una sesión</a>
+          <a class="btn ghost" href="mailto:aalvarizaes@miumg.edu.gt">Escribir por correo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (idéntico) -->
+  <footer>
+    <div class="shell">
+      <div>© <span id="y"></span> Punto Psicológico · Hecho con cuidado · <a href="/aviso-de-privacidad">Aviso de privacidad</a></div>
+      <div class="footer-social" aria-label="Redes sociales">
+        <a href="https://instagram.com/punto.psicológico" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor"/><circle cx="12" cy="12" r="4" stroke="currentColor"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+          Instagram
+        </a>
+        <a href="https://facebook.com/punto.psicológico" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z" fill="currentColor"/></svg>
+          Facebook
+        </a>
+        <a href="https://wa.me/50245630621" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" stroke="currentColor"/><path d="M16.2 14.4c-.3.9-1.8 1.6-2.5 1.6-.6 0-1.4-.2-2.6-.9-2.2-1.3-3.6-3.6-3.7-3.8-.1-.2-.9-1.2-.9-2.2 0-1 .5-1.5 .7-1.7 .2-.2 .4-.3 .6-.3h .4c .1 0 .3 0 .4 .3l .6 1.4c .1 .3 .1 .4 0 .6 0 .2 -.1 .3 -.2 .5l -.2 .2c -.1 .1 -.2 .3 -.1 .4 .1 .2 .6 1.1 1.3 1.8 .9 .9 1.8 1.2 2 .1l .5 -.6c .1 -.1 .3 -.2 .5 -.2 .2 0 .3 0 .5 .1l 1.3 .6c .3 .1 .4 .2 .5 .3 .1 .2 .1 .5 0 .7Z" fill="currentColor"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JSON-LD Article -->
+  <script type="application/ld+json" id="ld-article">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"¿Qué es la ansiedad y cómo empezar a manejarla?",
+    "datePublished":"2025-10-12",
+    "dateModified":"2025-10-12",
+    "author":{"@type":"Person","name":"Alejandra Alvarizaes"},
+    "publisher":{"@type":"Organization","name":"Punto Psicológico"},
+    "image":"https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=1600&auto=format&fit=crop",
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://tudominio.com/blog/que-es-la-ansiedad.html"}
+  }
+  </script>
+
+<script>
+  // Año
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Dropdown "Más"
+  const moreBtn = document.querySelector('.more-btn');
+  const moreMenu = document.getElementById('more-menu');
+  function closeMore(){ if(moreMenu){ moreMenu.style.display='none'; moreBtn?.setAttribute('aria-expanded','false'); } }
+  function toggleMore(e){
+    e.stopPropagation();
+    const open = moreMenu.style.display === 'block';
+    moreMenu.style.display = open ? 'none' : 'block';
+    moreBtn.setAttribute('aria-expanded', String(!open));
+  }
+  moreBtn?.addEventListener('click', toggleMore);
+  document.addEventListener('click', (e)=>{ if(!moreMenu.contains(e.target) && !moreBtn.contains(e.target)) closeMore(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMore(); });
+
+  // Cerrar menú móvil al navegar
+  const navToggle = document.getElementById('nav-toggle');
+  document.querySelectorAll('.menu a.link').forEach(a=>{
+    a.addEventListener('click', ()=>{ if(navToggle?.checked) navToggle.checked = false; closeMore(); });
+  });
+
+  // Tiempo de lectura (≈200 wpm)
+  const bodyText = document.getElementById('post-body').innerText || '';
+  const words = bodyText.trim().split(/\s+/).filter(Boolean).length;
+  const mins = Math.max(1, Math.round(words / 200));
+  document.getElementById('readtime').textContent = `${mins} min`;
+
+  // Compartir
+  const url = encodeURIComponent(location.href);
+  const title = encodeURIComponent(document.getElementById('post-title').textContent);
+  document.getElementById('share-wapp').href = `https://wa.me/?text=${title}%20${url}`;
+  document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+  document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${title}&url=${url}`;
+
+  // Sincroniza JSON-LD con título/portada/URL
+  (function syncLD(){
+    try{
+      const ldEl = document.getElementById('ld-article');
+      const ld = JSON.parse(ldEl.textContent);
+      ld.headline = document.getElementById('post-title').textContent;
+      ld.image = document.getElementById('post-cover').src;
+      ld.mainEntityOfPage['@id'] = location.href;
+      ld.dateModified = new Date().toISOString().slice(0,10);
+      ldEl.textContent = JSON.stringify(ld);
+    }catch(e){}
+  })();
+</script>
+</body>
+</html>

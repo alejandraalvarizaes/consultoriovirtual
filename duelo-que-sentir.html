@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>El duelo y el permiso para sentir | Punto Psicológico</title>
+<meta name="description" content="Qué es el duelo, por qué no es lineal y cómo darte permiso para sentirlo. Señales, mitos y 5 apoyos prácticos para transitarlo con cuidado." />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --salvia:#9DB5A3; --petroleo:#1F3B4D; --marfil:#F6F4EF; --humo:#6B7280; --mostaza:#C8A75D; --white:#fff;
+    --ff-title:"Poppins",system-ui; --ff-body:"Inter",system-ui; --ff-serif:"Crimson Text",serif;
+    --shadow:0 8px 28px rgba(0,0,0,.10);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--marfil);color:var(--petroleo)}
+  body{font-family:var(--ff-body);line-height:1.75}
+  a,a:visited{color:inherit;text-decoration:none} a:hover{text-decoration:none}
+
+  /* Header/footer a 1100px; artículo a 800px */
+  .shell{width:min(1100px,92%);margin-inline:auto}
+  .container{width:min(800px,92%);margin-inline:auto}
+
+  /* Botones y utilidades */
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;font-weight:600}
+  .btn.primary{background:var(--petroleo);color:#fff}
+  .btn.ghost{border:1px solid rgba(31,59,77,.2);background:#fff}
+  .small{font-size:.92rem;color:var(--humo)}
+
+  /* Header compacto + menú “Más ▾” (coherente) */
+  header{position:sticky;top:0;z-index:100;background:rgba(246,244,239,.88);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px dashed rgba(31,59,77,.15)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:12px}
+  .brand{display:flex;gap:10px;align-items:center}
+  .brand svg{width:38px;height:38px}
+  .brand .name{font-family:var(--ff-title);font-weight:700}
+  .brand .tag{font-size:.86rem;color:var(--humo)}
+  .menu.compact{display:flex;align-items:center;gap:14px;position:relative;flex-wrap:nowrap} /* ↑ gap */
+  .menu.compact a.link{padding:10px 14px;border-radius:999px;border:1px solid rgba(31,59,77,.12);background:rgba(255,255,255,.7);white-space:nowrap}
+  .menu.compact a.link:hover{background:var(--white)}
+  .more{position:relative}
+  .more-btn{padding:10px 14px;border-radius:999px;border:1px solid rgba(31,59,77,.12);background:var(--marfil);cursor:pointer;font:inherit;color:inherit}
+  .more-menu{position:absolute;right:0;top:calc(100% + 8px);min-width:240px;background:var(--marfil);border:1px dashed rgba(31,59,77,.18);border-radius:16px;box-shadow:var(--shadow);padding:8px;display:none;z-index:1000}
+  .more-menu a{display:block;padding:10px 12px;border-radius:12px;border:1px solid transparent;white-space:nowrap}
+  .more-menu a:hover{background:var(--white);border-color:rgba(31,59,77,.1)}
+  .burger{display:none;border:1px solid rgba(31,59,77,.2);border-radius:999px;padding:10px;background:#fff}
+  .burger span{display:block;width:20px;height:2px;background:var(--petroleo);border-radius:2px}
+  .burger span+span{margin-top:4px}
+  #nav-toggle{display:none}
+
+  @media (max-width:1100px){
+    .menu.compact{display:none;position:absolute;left:4%;right:4%;top:64px;background:var(--marfil);border:1px dashed rgba(31,59,77,.18);border-radius:18px;padding:12px;flex-wrap:wrap}
+    .menu.compact a.link,.menu.compact .more,.menu.compact .btn{flex:1 1 calc(50% - 8px);margin:4px 0}
+    #nav-toggle:checked + .menu.compact{display:flex}
+    .burger{display:inline-block}
+  }
+
+  /* Hero / títulos */
+  .hero{padding:56px 0 24px} /* ↑ coherente */
+  .title{font-family:var(--ff-title);font-weight:700;font-size:clamp(1.9rem,4vw,2.4rem);line-height:1.2;margin:0}
+  .meta{color:var(--humo);font-size:.95rem;margin-top:6px}
+
+  /* Artículo */
+  section{padding:40px 0} /* ↑ coherente */
+  .wrap-article{background:#fff;border:1px dashed rgba(31,59,77,.18);border-radius:22px;box-shadow:var(--shadow);padding:18px}
+  .cover{width:100%;height:320px;object-fit:cover;border-radius:14px;border:1px dashed rgba(31,59,77,.12)}
+  article h2{font-family:var(--ff-title);font-size:1.2rem;margin:18px 0 8px}
+  article h3{font-family:var(--ff-title);font-size:1.06rem;margin:14px 0 6px}
+  article p{margin:12px 0}
+  article ul{margin:10px 0 10px 18px}
+  article li{margin:6px 0}
+  article blockquote{
+    font-family:var(--ff-serif);font-style:italic;
+    background:radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--salvia) 18%, var(--marfil)) 0 40%, var(--marfil) 60%);
+    border:1px dashed rgba(31,59,77,.18);border-radius:16px;padding:14px;margin:16px 0
+  }
+
+  /* Tags (sin afectar .brand .tag) y compartir */
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .tags .tag,.tags .tag:visited{display:inline-flex;align-items:center;height:30px;padding:0 10px;line-height:1;border-radius:999px;background:var(--petroleo);color:#fff}
+  .share{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .share a{border:1px solid rgba(31,59,77,.2);border-radius:999px;padding:8px 10px;background:#fff}
+
+  .nextprev{display:flex;justify-content:space-between;gap:10px;margin:18px 0}
+
+  /* Footer */
+  footer{padding:26px 0;color:var(--humo);font-size:.95rem;border-top:1px dashed rgba(31,59,77,.15)}
+  .footer-social{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+  .footer-social a,.footer-social a:visited{
+    display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+    border:1px solid rgba(31,59,77,.18);background:var(--marfil);color:var(--petroleo)
+  }
+  .footer-social a:hover{background:#fff;border-color:rgba(31,59,77,.28)}
+  .footer-social svg{width:18px;height:18px;flex:0 0 18px;stroke:currentColor;fill:currentColor}
+
+  /* Accesibilidad */
+  :focus-visible{outline:3px solid color-mix(in srgb, var(--mostaza) 60%, var(--petroleo));outline-offset:8px;border-radius:10px}
+/* --- Fix: dropdown "Más" en móvil no se salga del panel --- */
+@media (max-width:1100px){
+  /* El contenedor "Más" ya no es absoluto; que fluya dentro del panel */
+  .menu.compact .more{ position: static; flex: 1 1 100%; }
+
+  /* El menú se vuelve un bloque de ancho completo dentro del panel */
+  .menu.compact .more-menu{
+    position: relative;
+    inset: auto;
+    display: none;           /* se muestra con el mismo JS que ya tienes */
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 16px;
+    max-height: 55vh;        /* por si hay muchas opciones */
+    overflow: auto;
+  }
+
+  /* Botones del dropdown ocupan todo el ancho y no se cortan */
+  .menu.compact .more-menu a{
+    width: 100%;
+    white-space: nowrap;
+  }
+}
+
+</style>
+</head>
+
+<body class="blog-post">
+  <!-- Header -->
+  <header>
+    <div class="shell nav" role="navigation" aria-label="Principal">
+      <div class="brand">
+        <a href="/index.html" aria-label="Inicio">
+          <!-- Isotipo -->
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <defs><clipPath id="psi"><path d="M58 90v-8c-12-3-18-12-18-25V44h10v13c0 9 3 15 10 17V44h-8v-8h22v8h-8v30c7-2 10-8 10-17V44h10v13c0 13-6 22-18 25v8h-10z"/></clipPath></defs>
+            <circle cx="42" cy="48" r="26" fill="#9DB5A3" opacity=".9"/>
+            <circle cx="78" cy="48" r="26" fill="#C8A75D" opacity=".9"/>
+            <circle cx="60" cy="30" r="26" fill="#1F3B4D" opacity=".9"/>
+            <rect x="20" y="16" width="80" height="80" fill="#F6F4EF" clip-path="url(#psi)"/>
+          </svg>
+        </a>
+        <div>
+          <div class="name"><a href="/index.html">Punto Psicológico</a></div>
+          <div class="tag">Espacio para el bienestar emocional</div>
+        </div>
+      </div>
+
+      <!-- Toggle móvil -->
+      <label for="nav-toggle" class="burger" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </label>
+      <input id="nav-toggle" type="checkbox" hidden>
+
+      <!-- Menú compacto + Más (coherente con el sitio) -->
+      <nav class="menu compact" id="menu" aria-label="Secciones">
+        <a class="link" href="/servicios.html">Servicios</a>
+        <a class="link" href="/sobre-mi.html">Sobre mí</a>
+        <a class="link" href="/blog.html" aria-current="page">Blog</a>
+        <a class="link" href="/contacto.html">Contacto</a>
+        <div class="more">
+            <button class="more-btn" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu">Más ▾</button>
+            <div id="more-menu" class="more-menu" role="menu" aria-label="Más opciones">
+              <a role="menuitem" class="link" href="/modalidad.html">Modalidad</a>
+              <a role="menuitem" class="link" href="/mision-y-vision.html">Misión & Visión</a>
+              <a role="menuitem" class="link" href="/medios.html">Medios</a>
+              <a role="menuitem" class="link" href="/galeria.html">Galería</a>
+              <a role="menuitem" class="link" href="/faq.html">FAQ</a>
+            </div>
+        </div>
+        <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar</a>
+       </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1 class="title" id="post-title">El duelo y el permiso para sentir</h1>
+        <div class="meta" id="post-meta">
+          <time datetime="2025-10-26" id="post-date">26 Oct 2025</time>
+          <span class="dot" style="margin:0 6px">•</span>
+          <span id="post-author">Por Alejandra Alvarizaes</span>
+          <span class="dot" style="margin:0 6px">•</span>
+          <span id="readtime" title="Tiempo estimado de lectura">— min</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Artículo -->
+    <section>
+      <div class="container wrap-article">
+        <img class="cover" id="post-cover" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop" alt="Cielo al atardecer con tonos suaves, sensación de pausa">
+        <article id="post-body">
+          <p><em>El duelo es la respuesta natural ante una pérdida importante: una persona, una relación, un proyecto, una etapa. No es debilidad ni “drama”; es una forma humana de amar y despedirse.</em></p>
+
+          <h2>Duelo: proceso, no línea recta</h2>
+          <p>El duelo no tiene atajos ni una fecha exacta de cierre. Suele moverse en olas: días en que puedes respirar mejor y otros en que la tristeza vuelve fuerte. Esto es parte del proceso.</p>
+
+          <h2>Mitos frecuentes (y por qué estorban)</h2>
+          <ul>
+            <li><strong>“Tengo que ser fuerte todo el tiempo”.</strong> Ser fuerte también es pedir ayuda y llorar cuando lo necesitas.</li>
+            <li><strong>“Debería haberlo superado ya”.</strong> No hay reloj universal. Compararte solo agrega dolor.</li>
+            <li><strong>“Si dejo de sentir, lo olvidaré”.</strong> Recordar no depende del dolor; también se honra desde la gratitud y los rituales.</li>
+          </ul>
+
+          <h2>Permiso para sentir</h2>
+          <p>Darte permiso no significa quedarte atrapada/o en el dolor, sino <strong>dejar que las emociones se muevan</strong> para poder reorganizar tu vida con lo que hoy es cierto.</p>
+
+          <h2>5 apoyos prácticos</h2>
+          <h3>1) Rituales pequeños y significativos</h3>
+          <p>Una vela, una carta, visitar un lugar, plantar algo. Los rituales le dan forma al adiós y sostienen el recuerdo.</p>
+
+          <h3>2) Ventanas de llanto y pausa</h3>
+          <p>Reserva 10–15 minutos al día para <em>sentir</em>: respirar, llorar, escribir. Poner límites a la emoción ayuda a que no invada toda la jornada.</p>
+
+          <h3>3) Red de apoyo clara</h3>
+          <p>Elige 2–3 personas con quienes puedas hablar sin filtros. Diles explícitamente cómo acompañarte: “escúchame 10 minutos” o “solo necesito estar en silencio”.</p>
+
+          <h3>4) Cuidado básico del cuerpo</h3>
+          <ul>
+            <li>Comidas sencillas y regulares.</li>
+            <li>Movimiento suave (caminar, estirar).</li>
+            <li>Rutina del sueño lo más estable posible.</li>
+          </ul>
+
+          <h3>5) Diario de recuerdos y significado</h3>
+          <p>Escribe tres cosas: lo que agradeces, lo que extrañas y lo que quieres llevar contigo de esa historia a lo que viene.</p>
+
+          <blockquote>“El dolor pide ser reconocido. Cuando lo miramos con respeto, encuentra caminos para transformarse.”</blockquote>
+
+          <h2>¿Cuándo buscar acompañamiento?</h2>
+          <p>Si sientes bloqueo prolongado, ideas de culpa extrema, aislamiento total, consumo de sustancias para “apagar”, o pensamientos de hacerte daño, <strong>busca ayuda profesional</strong>. No tienes que cargarlo en soledad.</p>
+
+          <h2>Un gesto amable para esta semana</h2>
+          <ul>
+            <li>Elige un ritual sencillo que te conecte con el recuerdo.</li>
+            <li>Abre una “ventana de sentir” diaria (10–15 min) con respiración y escritura.</li>
+            <li>Contacta a una persona de apoyo y explícale cómo puede acompañarte.</li>
+          </ul>
+
+          <p>Si lo necesitas, puedo acompañarte a crear un plan de cuidado que respete tu ritmo y tu historia.</p>
+        </article>
+
+        <!-- Tags -->
+        <div class="tags">
+          <span class="tag">duelo</span>
+          <span class="tag">rituales</span>
+          <span class="tag">autocuidado</span>
+        </div>
+
+        <!-- Compartir -->
+        <div class="share">
+          <a id="share-wapp" href="#" target="_blank" rel="noopener">Compartir por WhatsApp</a>
+          <a id="share-fb" href="#" target="_blank" rel="noopener">Compartir en Facebook</a>
+          <a id="share-x" href="#" target="_blank" rel="noopener">Compartir en X</a>
+        </div>
+
+        <!-- Navegación -->
+        <div class="nextprev">
+          <a id="prev" href="/autoestima-saludable.html">← Anterior</a>
+          <a id="next" href="/blog.html">Más artículos →</a>
+        </div>
+
+        <!-- CTA local -->
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar una sesión</a>
+          <a class="btn.ghost" href="mailto:aalvarizaes@miumg.edu.gt">Escribir por correo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="shell">
+      <div>© <span id="y"></span> Punto Psicológico · Hecho con cuidado · <a href="/aviso-de-privacidad">Aviso de privacidad</a></div>
+      <div class="footer-social" aria-label="Redes sociales">
+        <a href="https://instagram.com/punto.psicológico" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor"/><circle cx="12" cy="12" r="4" stroke="currentColor"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+          Instagram
+        </a>
+        <a href="https://facebook.com/punto.psicológico" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z" fill="currentColor"/></svg>
+          Facebook
+        </a>
+        <a href="https://wa.me/50245630621" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" stroke="currentColor"/><path d="M16.2 14.4c-.3.9-1.8 1.6-2.5 1.6-.6 0-1.4-.2-2.6-.9-2.2-1.3-3.6-3.6-3.7-3.8-.1-.2-.9-1.2-.9-2.2 0-1 .5-1.5 .7-1.7 .2-.2 .4-.3 .6-.3h .4c .1 0 .3 0 .4 .3l .6 1.4c .1 .3 .1 .4 0 .6 0 .2 -.1 .3 -.2 .5l -.2 .2c -.1 .1 -.2 .3 -.1 .4 .1 .2 .6 1.1 1.3 1.8 .9 .9 1.8 1.2 2 .1l .5 -.6c .1 -.1 .3 -.2 .5 -.2 .2 0 .3 0 .5 .1l 1.3 .6c .3 .1 .4 .2 .5 .3 .1 .2 .1 .5 0 .7Z" fill="currentColor"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JSON-LD Article -->
+  <script type="application/ld+json" id="ld-article">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"El duelo y el permiso para sentir",
+    "datePublished":"2025-10-26",
+    "dateModified":"2025-10-26",
+    "author":{"@type":"Person","name":"Alejandra Alvarizaes"},
+    "publisher":{"@type":"Organization","name":"Punto Psicológico"},
+    "image":"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop",
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://tudominio.com/duelo-que-sentir.html"}
+  }
+  </script>
+
+<script>
+  // Año
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Dropdown "Más"
+  const moreBtn = document.querySelector('.more-btn');
+  const moreMenu = document.getElementById('more-menu');
+  function closeMore(){ if(moreMenu){ moreMenu.style.display='none'; moreBtn?.setAttribute('aria-expanded','false'); } }
+  function toggleMore(e){
+    e.stopPropagation();
+    const open = moreMenu.style.display === 'block';
+    moreMenu.style.display = open ? 'none' : 'block';
+    moreBtn.setAttribute('aria-expanded', String(!open));
+  }
+  moreBtn?.addEventListener('click', toggleMore);
+  document.addEventListener('click', (e)=>{ if(!moreMenu.contains(e.target) && !moreBtn.contains(e.target)) closeMore(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMore(); });
+
+  // Cerrar menú móvil al navegar
+  const navToggle = document.getElementById('nav-toggle');
+  document.querySelectorAll('.menu a.link').forEach(a=>{
+    a.addEventListener('click', ()=>{ if(navToggle?.checked) navToggle.checked = false; closeMore(); });
+  });
+
+  // Tiempo de lectura (≈200 wpm)
+  const bodyText = document.getElementById('post-body').innerText || '';
+  const words = bodyText.trim().split(/\s+/).filter(Boolean).length;
+  const mins = Math.max(1, Math.round(words / 200));
+  document.getElementById('readtime').textContent = `${mins} min`;
+
+  // Compartir
+  const url = encodeURIComponent(location.href);
+  const title = encodeURIComponent(document.getElementById('post-title').textContent);
+  document.getElementById('share-wapp').href = `https://wa.me/?text=${title}%20${url}`;
+  document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+  document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${title}&url=${url}`;
+
+  // Sincroniza JSON-LD
+  (function syncLD(){
+    try{
+      const ldEl = document.getElementById('ld-article');
+      const ld = JSON.parse(ldEl.textContent);
+      ld.headline = document.getElementById('post-title').textContent;
+      ld.image = document.getElementById('post-cover').src;
+      ld.mainEntityOfPage['@id'] = location.href;
+      ld.dateModified = new Date().toISOString().slice(0,10);
+      ldEl.textContent = JSON.stringify(ld);
+    }catch(e){}
+  })();
+</script>
+</body>
+</html>

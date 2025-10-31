@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Servicios | Punto Psicológico</title>
+<meta name="description" content="Servicios de atención psicológica en línea: terapia individual, orientación emocional y evaluaciones psicológicas y psicométricas." />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --salvia:#9DB5A3; --petroleo:#1F3B4D; --marfil:#F6F4EF; --humo:#6B7280; --mostaza:#C8A75D; --white:#fff;
+    --ff-title:"Poppins",system-ui; --ff-body:"Inter",system-ui; --ff-serif:"Crimson Text",serif;
+    --shadow:0 8px 28px rgba(0,0,0,.10);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--marfil);color:var(--petroleo)}
+  body{font-family:var(--ff-body);line-height:1.65}
+  a,a:visited{color:inherit;text-decoration:none} a:hover{text-decoration:none}
+
+  .container{width:min(1100px,92%);margin-inline:auto}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;font-weight:600}
+  .btn.primary{background:var(--petroleo);color:#fff}
+  .btn.ghost{border:1px solid rgba(31,59,77,.2);background:#fff}
+  .small{font-size:.92rem;color:var(--humo)}
+
+  /* Header coherente */
+  header{position:sticky;top:0;z-index:100;background:rgba(246,244,239,.88);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px dashed rgba(31,59,77,.15)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:12px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand svg{width:38px;height:38px}
+  .brand .name{font-family:var(--ff-title);font-weight:700}
+  .brand .tag{font-size:.86rem;color:var(--humo)}
+  .menu.compact{display:flex;align-items:center;gap:14px;position:relative;flex-wrap:nowrap}
+  .menu.compact a.link{padding:10px 14px;border-radius:999px;border:1px solid rgba(31,59,77,.12);background:rgba(255,255,255,.7);white-space:nowrap}
+  .menu.compact a.link[aria-current="page"]{box-shadow:inset 0 0 0 2px rgba(31,59,77,.15);background:#fff}
+  .more{position:relative}
+  .more-btn{padding:10px 14px;border-radius:999px;border:1px solid rgba(31,59,77,.12);background:var(--marfil);cursor:pointer;font:inherit;color:inherit}
+  .more-menu{position:absolute;right:0;top:calc(100% + 8px);min-width:240px;background:var(--marfil);border:1px dashed rgba(31,59,77,.18);border-radius:16px;box-shadow:var(--shadow);padding:8px;display:none;z-index:1000}
+  .more-menu a{display:block;padding:10px 12px;border-radius:12px;border:1px solid transparent;white-space:nowrap}
+  .more-menu a:hover{background:#fff;border-color:rgba(31,59,77,.1)}
+  .burger{display:none;border:1px solid rgba(31,59,77,.2);border-radius:999px;padding:10px;background:#fff}
+  .burger span{display:block;width:20px;height:2px;background:var(--petroleo);border-radius:2px}
+  .burger span+span{margin-top:4px}
+  #nav-toggle{display:none}
+  @media (max-width:1100px){
+    .menu.compact{display:none; position:absolute; left:4%; right:4%; top:64px; background:var(--marfil);
+      border:1px dashed rgba(31,59,77,.18); border-radius:18px; padding:12px; flex-wrap:wrap}
+    .menu.compact a.link, .menu.compact .more, .menu.compact .btn{flex:1 1 calc(50% - 8px); margin:4px 0}
+    #nav-toggle:checked + .menu.compact{display:flex}
+    .burger{display:inline-block}
+  }
+
+  /* Hero interno */
+  .hero{padding:56px 0 24px;position:relative;overflow:hidden}
+  .orbit{position:absolute; inset:-120px -120px auto auto; width:360px; height:360px; border-radius:50%; background: radial-gradient(circle at 55% 45%, rgba(157,181,163,.35), transparent 60%)}
+  .h1{font-family:var(--ff-title);font-weight:700;line-height:1.12;font-size:clamp(1.9rem,4.8vw,3rem);margin:0}
+  .lead{color:var(--humo);max-width:65ch}
+
+  /* Secciones */
+  section{padding:40px 0}
+  .sec-title{font-family:var(--ff-title);font-size:clamp(1.2rem,2.6vw,1.6rem);margin:0 0 12px;position:relative;padding-left:26px}
+  .sec-title::before{content:"";position:absolute;left:0;top:.45em;width:12px;height:12px;border-radius:50%;background:color-mix(in srgb, var(--salvia) 70%, white);box-shadow:0 0 0 6px rgba(157,181,163,.25)}
+
+  /* Cards de servicios */
+  .cards{display:grid;grid-template-columns:1fr;gap:16px}
+  @media (min-width:860px){ .cards{grid-template-columns:repeat(3,1fr)} }
+  .card{background:#fff;border:1px dashed rgba(31,59,77,.18);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+  .card .img{width:100%;height:200px;object-fit:cover;display:block;border-bottom:1px dashed rgba(31,59,77,.12)}
+  .card .content{padding:16px}
+  .card h3{font-family:var(--ff-title);font-size:1.06rem;margin:0 0 6px}
+  .feature{display:flex;gap:10px;align-items:flex-start}
+  .dot{width:12px;height:12px;border-radius:50%;background:color-mix(in srgb, var(--salvia) 70%, white);margin-top:8px;box-shadow:0 0 0 6px rgba(157,181,163,.18)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .chip{display:inline-flex;align-items:center;height:34px;padding:0 12px;border-radius:999px;background:var(--petroleo);color:#fff !important;font-size:.86rem}
+
+  /* Grids laterales */
+  .grid-2{display:grid;grid-template-columns:1fr;gap:16px}
+  @media (min-width:860px){ .grid-2{grid-template-columns:1.1fr .9fr} }
+
+  /* FAQ mini y secciones compactas */
+  .faq details{background:#fff;border:1px dashed rgba(31,59,77,.18);border-radius:16px;padding:14px;margin-bottom:10px}
+  .faq summary{cursor:pointer;font-weight:600}
+
+  /* Footer */
+  footer{padding:26px 0;color:var(--humo);font-size:.95rem;border-top:1px dashed rgba(31,59,77,.15)}
+  .footer-social{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+  .footer-social a,.footer-social a:visited{
+    display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+    border:1px solid rgba(31,59,77,.18);background:var(--marfil);color:var(--petroleo)
+  }
+  .footer-social a:hover{background:#fff;border-color:rgba(31,59,77,.28)}
+  .footer-social svg{width:18px;height:18px;flex:0 0 18px;stroke:currentColor;fill:currentColor}
+
+  /* Utilidades */
+  .inset{padding:18px}
+  .cta-card{display:grid;grid-template-columns:1fr;gap:14px;align-items:center;padding:24px !important}
+  .cta-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+  :focus-visible{outline:3px solid color-mix(in srgb, var(--mostaza) 60%, var(--petroleo));outline-offset:8px;border-radius:10px}
+  /* ——— Diferenciar chips vs. botones en SERVICIOS ——— */
+
+/* Chips “soft” solo dentro de la grilla de servicios */
+.cards .chip{
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: .88rem;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--petroleo) 9%, #fff);
+  color: var(--petroleo) !important;              /* texto oscuro para contraste */
+  border: 1px solid rgba(31,59,77,.18);
+  box-shadow: inset 0 -2px 0 rgba(31,59,77,.04);
+  transition: background .18s ease, border-color .18s ease, transform .08s ease;
+}
+.cards .chip:hover{
+  background: color-mix(in srgb, var(--petroleo) 14%, #fff);
+  border-color: rgba(31,59,77,.26);
+}
+.cards .chips{ gap: 10px; margin-top: 12px; }     /* un poco más de aire */
+.cards .content p + .chips{ margin-top: 14px; }   /* separa chips del texto */
+
+/* Botones: más jerarquía visual */
+.btn{
+  min-height: 44px;                               /* más altos que un chip */
+  padding: 10px 18px;
+  border-radius: 16px;                             /* distinto a chip (menos “pastilla”) */
+  font-weight: 700;                                /* más contundente */
+  transition: transform .08s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+}
+.btn.primary{
+  background: var(--petroleo);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(31,59,77,.18);
+}
+.btn.primary:hover{ transform: translateY(-1px); box-shadow: 0 8px 22px rgba(31,59,77,.22); }
+.btn.primary:active{ transform: translateY(0); box-shadow: 0 4px 14px rgba(31,59,77,.18); }
+
+.btn.ghost{
+  background: #fff;
+  border: 1.5px solid rgba(31,59,77,.26);
+}
+.btn.ghost:hover{ border-color: rgba(31,59,77,.38); background: color-mix(in srgb, #fff 92%, var(--salvia)); }
+.btn.ghost:active{ background: #fff; }
+
+/* Espaciado entre chips y botones dentro de cada card */
+.cards .content .btn{ margin-top: 4px; }
+.cards .content p + .btn,
+.cards .content .chips + p{ margin-top: 12px; }
+/* --- Fix: dropdown "Más" en móvil no se salga del panel --- */
+@media (max-width:1100px){
+  /* El contenedor "Más" ya no es absoluto; que fluya dentro del panel */
+  .menu.compact .more{ position: static; flex: 1 1 100%; }
+
+  /* El menú se vuelve un bloque de ancho completo dentro del panel */
+  .menu.compact .more-menu{
+    position: relative;
+    inset: auto;
+    display: none;           /* se muestra con el mismo JS que ya tienes */
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 16px;
+    max-height: 55vh;        /* por si hay muchas opciones */
+    overflow: auto;
+  }
+
+  /* Botones del dropdown ocupan todo el ancho y no se cortan */
+  .menu.compact .more-menu a{
+    width: 100%;
+    white-space: nowrap;
+  }
+}
+</style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Principal">
+      <div class="brand">
+        <a href="/index.html" aria-label="Inicio">
+          <!-- Isotipo -->
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <defs><clipPath id="psi"><path d="M58 90v-8c-12-3-18-12-18-25V44h10v13c0 9 3 15 10 17V44h-8v-8h22v8h-8v30c7-2 10-8 10-17V44h10v13c0 13-6 22-18 25v8h-10z"/></clipPath></defs>
+            <circle cx="42" cy="48" r="26" fill="#9DB5A3" opacity=".9"/>
+            <circle cx="78" cy="48" r="26" fill="#C8A75D" opacity=".9"/>
+            <circle cx="60" cy="30" r="26" fill="#1F3B4D" opacity=".9"/>
+            <rect x="20" y="16" width="80" height="80" fill="#F6F4EF" clip-path="url(#psi)"/>
+          </svg>
+        </a>
+        <div>
+          <div class="name"><a href="/index.html">Punto Psicológico</a></div>
+          <div class="tag">Espacio para el bienestar emocional</div>
+        </div>
+      </div>
+
+      <!-- Toggle móvil -->
+      <label for="nav-toggle" class="burger" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </label>
+      <input id="nav-toggle" type="checkbox" hidden>
+
+      <!-- Menú -->
+      <nav class="menu compact" id="menu" aria-label="Secciones">
+        <a class="link" href="/servicios.html" aria-current="page">Servicios</a>
+        <a class="link" href="/sobre-mi.html">Sobre mí</a>
+        <a class="link" href="/blog.html">Blog</a>
+        <a class="link" href="/contacto.html">Contacto</a>
+        <div class="more">
+          <button class="more-btn" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu">Más ▾</button>
+          <div id="more-menu" class="more-menu" role="menu" aria-label="Más opciones">
+            <a role="menuitem" class="link" href="/modalidad.html">Modalidad</a>
+            <a role="menuitem" class="link" href="/mision-y-vision.html">Misión & Visión</a>
+            <a role="menuitem" class="link" href="/medios.html">Medios</a>
+            <a role="menuitem" class="link" href="/galeria.html">Galería</a>
+            <a role="menuitem" class="link" href="/faq.html">FAQ</a>
+          </div>
+        </div>
+        <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="orbit" aria-hidden="true"></div>
+    <div class="container">
+      <h1 class="h1">Servicios</h1>
+      <p class="lead">Atención psicológica clínica en línea, con calidez y herramientas claras. Elige el servicio que mejor se ajuste a tu momento.</p>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section>
+    <div class="container cards">
+      <!-- Terapia individual -->
+      <article class="card" id="terapia-individual">
+        <img class="img" src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=1600&auto=format&fit=crop" alt="Terapia individual — conversación en línea">
+        <div class="content">
+          <h3>Terapia individual (adultos y adolescentes)</h3>
+          <p class="small">Proceso personalizado para comprender y ordenar lo que sientes, fortaleciendo recursos internos.</p>
+          <div class="feature"><span class="dot"></span><div><strong>Qué incluye</strong><br><span class="small">Sesiones de 45–55 min, objetivos claros, tareas prácticas y seguimiento.</span></div></div>
+          <div class="feature"><span class="dot"></span><div><strong>Modalidad</strong><br><span class="small">En línea, por videollamada segura.</span></div></div>
+          <div class="chips" aria-label="Enfocado en">
+            <span class="chip">Ansiedad</span><span class="chip">Autoestima</span><span class="chip">Relaciones</span><span class="chip">Duelo</span><span class="chip">Desarrollo personal</span>
+          </div>
+          <p style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar sesión</a>
+            <a class="btn ghost" href="mailto:aalvarizaes@miumg.edu.gt">Consultar por correo</a>
+          </p>
+        </div>
+      </article>
+
+      <!-- Orientación emocional -->
+      <article class="card" id="orientacion-emocional">
+        <img class="img" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1600&auto=format&fit=crop" alt="Orientación emocional — acompañamiento cercano">
+        <div class="content">
+          <h3>Orientación emocional</h3>
+          <p class="small">Acompañamiento breve para momentos específicos: tomar decisiones, gestionar cambios o aclarar un tema puntual.</p>
+          <div class="feature"><span class="dot"></span><div><strong>Qué incluye</strong><br><span class="small">Sesiones focalizadas, herramientas concretas, plan de acción.</span></div></div>
+          <div class="feature"><span class="dot"></span><div><strong>Modalidad</strong><br><span class="small">En línea, por videollamada segura.</span></div></div>
+          <div class="chips" aria-label="Temas frecuentes">
+            <span class="chip">Estrés</span><span class="chip">Límites</span><span class="chip">Comunicación</span><span class="chip">Autocuidado</span>
+          </div>
+          <p style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar</a>
+            <a class="btn ghost" href="mailto:aalvarizaes@miumg.edu.gt">Escribir</a>
+          </p>
+        </div>
+      </article>
+
+      <!-- Evaluaciones -->
+      <article class="card" id="evaluaciones">
+        <img class="img" src="https://images.unsplash.com/photo-1526662092594-e98c1e356d6a?q=80&w=1600&auto=format&fit=crop" alt="Evaluaciones psicológicas y psicométricas — instrumentos y reportes">
+        <div class="content">
+          <h3>Evaluaciones psicológicas y psicométricas</h3>
+          <p class="small">Aplicación de instrumentos validados para explorar rasgos, estados emocionales y funciones específicas.</p>
+          <div class="feature"><span class="dot"></span><div><strong>Qué incluye</strong><br><span class="small">Entrevista clínica, aplicación de pruebas, informe claro y retroalimentación.</span></div></div>
+          <div class="feature"><span class="dot"></span><div><strong>Modalidad</strong><br><span class="small">En línea, con protocolos adaptados y consentimiento informado.</span></div></div>
+          <div class="chips" aria-label="Instrumentos (ejemplo)">
+            <span class="chip">BDI-II</span><span class="chip">STAI</span><span class="chip">MMPI-2</span><span class="chip">Inventario autoestima</span>
+          </div>
+          <p style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Solicitar evaluación</a>
+            <a class="btn ghost" href="mailto:aalvarizaes@miumg.edu.gt">Preguntar detalles</a>
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Especialidades -->
+  <section>
+    <div class="container">
+      <h2 class="sec-title">Especialidades</h2>
+      <p class="small" style="margin-top:-6px">Temas en los que trabajamos con mayor frecuencia.</p>
+      <div class="chips">
+        <span class="chip">Ansiedad</span><span class="chip">Autoestima</span><span class="chip">Duelos</span>
+        <span class="chip">Relaciones interpersonales</span><span class="chip">Desarrollo personal</span>
+        <span class="chip">Límites y comunicación</span><span class="chip">Autocuidado</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cómo agendar & Preguntas rápidas -->
+  <section>
+    <div class="container grid-2">
+      <div class="card inset">
+        <h2 class="sec-title">Cómo agendar</h2>
+        <div style="display:grid;gap:12px;margin:0">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--salvia);display:grid;place-items:center;color:var(--petroleo);font-weight:700">1</div>
+            <div class="txt"><strong>Escríbenos</strong><br><span class="small">WhatsApp <a href="https://wa.me/50245630621" target="_blank" rel="noopener">45630621</a> o correo <a href="mailto:aalvarizaes@miumg.edu.gt">aalvarizaes@miumg.edu.gt</a>.</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--salvia);display:grid;place-items:center;color:var(--petroleo);font-weight:700">2</div>
+            <div class="txt"><strong>Disponibilidad</strong><br><span class="small">Lunes a viernes, 8:00–17:00 (GT). Te proponemos opciones.</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--salvia);display:grid;place-items:center;color:var(--petroleo);font-weight:700">3</div>
+            <div class="txt"><strong>Confirmación</strong><br><span class="small">Recibirás enlace de videollamada y lineamientos breves.</span></div>
+          </div>
+        </div>
+        <div class="cta-actions" style="margin-top:12px">
+          <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar por WhatsApp</a>
+          <a class="btn ghost" href="mailto:aalvarizaes@miumg.edu.gt">Escribir por correo</a>
+        </div>
+        <p class="small" style="margin:6px 0 0;color:var(--humo)">Privacidad y confidencialidad garantizadas.</p>
+      </div>
+
+      <div class="card inset">
+        <h2 class="sec-title">Preguntas rápidas</h2>
+        <div class="faq">
+          <details><summary>¿Las sesiones son presenciales?</summary><p class="small">Atención 100% en línea por videollamada segura.</p></details>
+          <details><summary>¿Duración de la sesión?</summary><p class="small">45–55 minutos, según el objetivo de trabajo.</p></details>
+          <details><summary>¿Cómo se maneja la confidencialidad?</summary><p class="small">Con criterios éticos y legales; tu información está protegida.</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section>
+    <div class="container">
+      <div class="card inset cta-card">
+        <div>
+          <strong>¿List@ para dar el siguiente paso?</strong><br>
+          <span class="small">Estamos para acompañarte. Agenda hoy tu espacio.</span>
+        </div>
+        <div class="cta-actions">
+          <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar ahora</a>
+          <a class="btn ghost" href="mailto:aalvarizaes@miumg.edu.gt">Consultar dudas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div>© <span id="y"></span> Punto Psicológico · Hecho con cuidado · <a href="/aviso-de-privacidad">Aviso de privacidad</a></div>
+      <div class="footer-social" aria-label="Redes sociales">
+        <a href="https://instagram.com/punto.psicológico" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor"/><circle cx="12" cy="12" r="4" stroke="currentColor"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+          Instagram
+        </a>
+        <a href="https://facebook.com/punto.psicológico" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z" fill="currentColor"/></svg>
+          Facebook
+        </a>
+        <a href="https://wa.me/50245630621" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" stroke="currentColor"/><path d="M16.2 14.4c-.3.9-1.8 1.6-2.5 1.6-.6 0-1.4-.2-2.6-.9-2.2-1.3-3.6-3.6-3.7-3.8-.1-.2-.9-1.2-.9-2.2 0-1 .5-1.5 .7-1.7 .2-.2 .4-.3 .6-.3h .4c .1 0 .3 0 .4 .3l .6 1.4c .1 .3 .1 .4 0 .6 0 .2 -.1 .3 -.2 .5l -.2 .2c -.1 .1 -.2 .3 -.1 .4 .1 .2 .6 1.1 1.3 1.8 .9 .9 1.8 1.2 2 .1l .5 -.6c .1 -.1 .3 -.2 .5 -.2 .2 0 .3 0 .5 .1l 1.3 .6c .3 .1 .4 .2 .5 .3 .1 .2 .1 .5 0 .7Z" fill="currentColor"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Punto Psicológico",
+    "url":"https://tudominio.com/servicios",
+    "sameAs":[
+      "https://instagram.com/punto.psicológico",
+      "https://facebook.com/punto.psicológico"
+    ],
+    "serviceProvided":[
+      {"@type":"Service","name":"Terapia individual","areaServed":"GT","availableChannel":{"@type":"ServiceChannel","serviceUrl":"https://wa.me/50245630621"}},
+      {"@type":"Service","name":"Orientación emocional","areaServed":"GT","availableChannel":{"@type":"ServiceChannel","serviceUrl":"https://wa.me/50245630621"}},
+      {"@type":"Service","name":"Evaluaciones psicológicas y psicométricas","areaServed":"GT","availableChannel":{"@type":"ServiceChannel","serviceUrl":"https://wa.me/50245630621"}}
+    ]
+  }
+  </script>
+
+<script>
+  // Año
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Dropdown “Más”
+  const moreBtn = document.querySelector('.more-btn');
+  const moreMenu = document.getElementById('more-menu');
+  function closeMore(){ if(moreMenu){ moreMenu.style.display='none'; moreBtn?.setAttribute('aria-expanded','false'); } }
+  function toggleMore(e){
+    e.stopPropagation();
+    const open = moreMenu.style.display==='block';
+    moreMenu.style.display = open?'none':'block';
+    moreBtn.setAttribute('aria-expanded', String(!open));
+  }
+  moreBtn?.addEventListener('click', toggleMore);
+  document.addEventListener('click', (e)=>{ if(!moreMenu.contains(e.target) && !moreBtn.contains(e.target)) closeMore(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMore(); });
+
+  // Cerrar menú móvil al navegar
+  const navToggle = document.getElementById('nav-toggle');
+  document.querySelectorAll('.menu a.link').forEach(a=>{
+    a.addEventListener('click', ()=>{ if(navToggle?.checked) navToggle.checked=false; closeMore(); });
+  });
+</script>
+</body>
+</html>

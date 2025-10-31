@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Modalidad en línea | Punto Psicológico</title>
+<meta name="description" content="Cómo funcionan las sesiones en línea: requisitos técnicos, privacidad y recomendaciones para aprovechar tu proceso terapéutico." />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --salvia:#9DB5A3; --petroleo:#1F3B4D; --marfil:#F6F4EF; --humo:#6B7280; --mostaza:#C8A75D; --white:#fff;
+    --ff-title:"Poppins",system-ui; --ff-body:"Inter",system-ui; --ff-serif:"Crimson Text",serif;
+    --shadow:0 8px 28px rgba(0,0,0,.10);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--marfil);color:var(--petroleo)}
+  body{font-family:var(--ff-body);line-height:1.65}
+  a,a:visited{color:inherit;text-decoration:none} a:hover{text-decoration:none}
+
+  .container{width:min(1100px,92%);margin-inline:auto}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;font-weight:600;transition:.18s}
+  .btn.primary{background:var(--petroleo);color:#fff;box-shadow:0 6px 18px rgba(31,59,77,.18)}
+  .btn.primary:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(31,59,77,.22)}
+  .btn.ghost{border:1.5px solid rgba(31,59,77,.26);background:#fff}
+  .btn.ghost:hover{border-color:rgba(31,59,77,.38);background:color-mix(in srgb,#fff 92%,var(--salvia))}
+  .small{font-size:.92rem;color:var(--humo)}
+
+  /* Header coherente */
+  header{position:sticky;top:0;z-index:100;background:rgba(246,244,239,.88);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px dashed rgba(31,59,77,.15)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:12px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand svg{width:38px;height:38px}
+  .brand .name{font-family:var(--ff-title);font-weight:700}
+  .brand .tag{font-size:.86rem;color:var(--humo)}
+
+  .menu.compact{display:flex;align-items:center;gap:14px;position:relative;flex-wrap:nowrap} /* gap=14 */
+  .menu.compact a.link{padding:10px 14px;border-radius:999px;border:1px solid rgba(31,59,77,.12);background:rgba(255,255,255,.7);white-space:nowrap}
+  .menu.compact a.link[aria-current="page"]{box-shadow:inset 0 0 0 2px rgba(31,59,77,.15);background:#fff}
+  .more{position:relative}
+  .more-btn{padding:10px 14px;border-radius:999px;border:1px solid rgba(31,59,77,.12);background:var(--marfil);cursor:pointer;font:inherit;color:inherit}
+  .more-menu{position:absolute;right:0;top:calc(100% + 8px);min-width:240px;background:var(--marfil);border:1px dashed rgba(31,59,77,.18);border-radius:16px;box-shadow:var(--shadow);padding:8px;display:none;z-index:1000}
+  .more-menu a{display:block;padding:10px 12px;border-radius:12px;border:1px solid transparent;white-space:nowrap}
+  .more-menu a:hover{background:#fff;border-color:rgba(31,59,77,.1)}
+  .burger{display:none;border:1px solid rgba(31,59,77,.2);border-radius:999px;padding:10px;background:#fff}
+  .burger span{display:block;width:20px;height:2px;background:var(--petroleo);border-radius:2px}
+  .burger span+span{margin-top:4px}
+  #nav-toggle{display:none}
+  @media (max-width:1100px){
+    .menu.compact{display:none;position:absolute;left:4%;right:4%;top:64px;background:var(--marfil);border:1px dashed rgba(31,59,77,.18);border-radius:18px;padding:12px;flex-wrap:wrap}
+    .menu.compact a.link,.menu.compact .more,.menu.compact .btn{flex:1 1 calc(50% - 8px);margin:4px 0}
+    #nav-toggle:checked + .menu.compact{display:flex}
+    .burger{display:inline-block}
+  }
+
+  /* Hero */
+  .hero{padding:56px 0 24px;position:relative;overflow:hidden}
+  .orbit{position:absolute;inset:-120px -120px auto auto;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle at 55% 45%, rgba(157,181,163,.35), transparent 60%)}
+  .h1{font-family:var(--ff-title);font-weight:700;line-height:1.12;font-size:clamp(1.9rem,4.8vw,3rem);margin:0}
+  .lead{color:var(--humo);max-width:65ch}
+
+  /* Secciones */
+  section{padding:40px 0} /* unificado */
+  .sec-title{font-family:var(--ff-title);font-size:clamp(1.2rem,2.6vw,1.6rem);margin:0 0 12px;position:relative;padding-left:26px}
+  .sec-title::before{content:"";position:absolute;left:0;top:.45em;width:12px;height:12px;border-radius:50%;background:color-mix(in srgb,var(--salvia) 70%, white);box-shadow:0 0 0 6px rgba(157,181,163,.25)}
+  .grid-2{display:grid;grid-template-columns:1fr;gap:16px}
+  .grid-3{display:grid;grid-template-columns:1fr;gap:16px}
+  @media (min-width:860px){ .grid-2{grid-template-columns:1.1fr .9fr} .grid-3{grid-template-columns:repeat(3,1fr)} }
+
+  .card{background:#fff;border:1px dashed rgba(31,59,77,.18);border-radius:22px;box-shadow:var(--shadow)}
+  .inset{padding:18px}
+  .stack{display:grid;gap:12px}
+
+  .feature{display:flex;gap:10px;align-items:flex-start}
+  .dot{width:12px;height:12px;border-radius:50%;background:color-mix(in srgb,var(--salvia) 70%, white);margin-top:7px;box-shadow:0 0 0 6px rgba(157,181,163,.18)}
+
+  /* Checklist */
+  .check{display:flex;gap:10px;align-items:flex-start}
+  .check .mark{width:22px;height:22px;border-radius:50%;background:var(--salvia);display:grid;place-items:center;color:var(--petroleo);font-weight:700;flex:none}
+
+  /* Footer */
+  footer{padding:26px 0;color:var(--humo);font-size:.95rem;border-top:1px dashed rgba(31,59,77,.15)}
+  .footer-social{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+  .footer-social a,.footer-social a:visited{
+    display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+    border:1px solid rgba(31,59,77,.18);background:var(--marfil);color:var(--petroleo)
+  }
+  .footer-social a:hover{background:#fff;border-color:rgba(31,59,77,.28)}
+  .footer-social svg{width:18px;height:18px;flex:0 0 18px;stroke:currentColor;fill:currentColor}
+
+  :focus-visible{outline:3px solid color-mix(in srgb,var(--mostaza) 60%, var(--petroleo));outline-offset:8px;border-radius:10px}
+/* --- Fix: dropdown "Más" en móvil no se salga del panel --- */
+@media (max-width:1100px){
+  /* El contenedor "Más" ya no es absoluto; que fluya dentro del panel */
+  .menu.compact .more{ position: static; flex: 1 1 100%; }
+
+  /* El menú se vuelve un bloque de ancho completo dentro del panel */
+  .menu.compact .more-menu{
+    position: relative;
+    inset: auto;
+    display: none;           /* se muestra con el mismo JS que ya tienes */
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 16px;
+    max-height: 55vh;        /* por si hay muchas opciones */
+    overflow: auto;
+  }
+
+  /* Botones del dropdown ocupan todo el ancho y no se cortan */
+  .menu.compact .more-menu a{
+    width: 100%;
+    white-space: nowrap;
+  }
+}
+</style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Principal">
+      <div class="brand">
+        <a href="/index.html" aria-label="Inicio">
+          <!-- Isotipo -->
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <defs><clipPath id="psi"><path d="M58 90v-8c-12-3-18-12-18-25V44h10v13c0 9 3 15 10 17V44h-8v-8h22v8h-8v30c7-2 10-8 10-17V44h10v13c0 13-6 22-18 25v8h-10z"/></clipPath></defs>
+            <circle cx="42" cy="48" r="26" fill="#9DB5A3" opacity=".9"/>
+            <circle cx="78" cy="48" r="26" fill="#C8A75D" opacity=".9"/>
+            <circle cx="60" cy="30" r="26" fill="#1F3B4D" opacity=".9"/>
+            <rect x="20" y="16" width="80" height="80" fill="#F6F4EF" clip-path="url(#psi)"/>
+          </svg>
+        </a>
+        <div>
+          <div class="name"><a href="/index.html">Punto Psicológico</a></div>
+          <div class="tag">Espacio para el bienestar emocional</div>
+        </div>
+      </div>
+
+      <!-- Toggle móvil -->
+      <label for="nav-toggle" class="burger" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </label>
+      <input id="nav-toggle" type="checkbox" hidden>
+
+      <!-- Menú -->
+      <nav class="menu compact" id="menu" aria-label="Secciones">
+        <a class="link" href="/servicios.html">Servicios</a>
+        <a class="link" href="/sobre-mi.html">Sobre mí</a>
+        <a class="link" href="/blog.html">Blog</a>
+        <a class="link" href="/contacto.html">Contacto</a>
+        <div class="more">
+          <button class="more-btn" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu">Más ▾</button>
+          <div id="more-menu" class="more-menu" role="menu" aria-label="Más opciones">
+            <a role="menuitem" class="link" href="/modalidad.html" aria-current="page">Modalidad</a>
+            <a role="menuitem" class="link" href="/mision-y-vision.html">Misión & Visión</a>
+            <a role="menuitem" class="link" href="/medios.html">Medios</a>
+            <a role="menuitem" class="link" href="/galeria.html">Galería</a>
+            <a role="menuitem" class="link" href="/faq.html">FAQ</a>
+          </div>
+        </div>
+        <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="orbit" aria-hidden="true"></div>
+    <div class="container">
+      <h1 class="h1">Modalidad en línea</h1>
+      <p class="lead">Sesiones por videollamada segura. Mismo cuidado y calidez, con mayor comodidad y accesibilidad.</p>
+    </div>
+  </section>
+
+  <!-- Cómo funciona + Horarios -->
+  <section>
+    <div class="container grid-2">
+      <div class="card inset stack">
+        <h2 class="sec-title">Cómo funcionan las sesiones</h2>
+        <div class="feature"><span class="dot"></span><div><strong>Duración</strong><br><span class="small">45–55 minutos por sesión.</span></div></div>
+        <div class="feature"><span class="dot"></span><div><strong>Frecuencia</strong><br><span class="small">Semanal o quincenal, según objetivo clínico y disponibilidad.</span></div></div>
+        <div class="feature"><span class="dot"></span><div><strong>Enlace de acceso</strong><br><span class="small">Te enviamos un enlace privado de videollamada al confirmar tu cita.</span></div></div>
+        <div class="feature"><span class="dot"></span><div><strong>Material de apoyo</strong><br><span class="small">Recursos y tareas prácticas cuando sea pertinente.</span></div></div>
+      </div>
+
+      <div class="card inset stack">
+        <h2 class="sec-title">Horarios & Plataforma</h2>
+        <div class="feature"><span class="dot"></span><div><strong>Horarios</strong><br><span class="small">Lunes a viernes, 8:00–17:00 (GT).</span></div></div>
+        <div class="feature"><span class="dot"></span><div><strong>Plataforma</strong><br><span class="small">Videollamada privada (enlace único por sesión).</span></div></div>
+        <div class="feature"><span class="dot"></span><div><strong>Soporte</strong><br><span class="small">Si algo falla, reintentamos y contamos con alternativas.</span></div></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px">
+          <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar por WhatsApp</a>
+          <a class="btn.ghost btn ghost" href="mailto:aalvarizaes@miumg.edu.gt">Escribir por correo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requisitos técnicos -->
+  <section>
+    <div class="container card inset">
+      <h2 class="sec-title">Requisitos técnicos</h2>
+      <div class="grid-3">
+        <div class="stack">
+          <div class="check"><div class="mark">✓</div><div><strong>Dispositivo</strong><br><span class="small">Computadora, tablet o móvil con cámara y micrófono.</span></div></div>
+          <div class="check"><div class="mark">✓</div><div><strong>Conexión</strong><br><span class="small">Internet estable (ideal ≥ 10 Mbps de bajada).</span></div></div>
+        </div>
+        <div class="stack">
+          <div class="check"><div class="mark">✓</div><div><strong>Navegador/App</strong><br><span class="small">Versión actualizada (Chrome, Edge, Safari, Firefox) o app de videollamada.</span></div></div>
+          <div class="check"><div class="mark">✓</div><div><strong>Audio</strong><br><span class="small">Audífonos recomendados para mayor privacidad.</span></div></div>
+        </div>
+        <div class="stack">
+          <div class="check"><div class="mark">✓</div><div><strong>Alimentación</strong><br><span class="small">Batería cargada o equipo conectado a la corriente.</span></div></div>
+          <div class="check"><div class="mark">✓</div><div><strong>Respaldo</strong><br><span class="small">Datos móviles o segunda red si es posible.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Checklist previo + Entorno -->
+  <section>
+    <div class="container grid-2">
+      <div class="card inset" style="display:grid;gap:12px">
+        <h2 class="sec-title">Checklist previo a tu sesión</h2>
+        <div class="check"><div class="mark">1</div><div><strong>Espacio</strong><br><span class="small">Busca un lugar tranquilo y privado.</span></div></div>
+        <div class="check"><div class="mark">2</div><div><strong>Equipo listo</strong><br><span class="small">Cámara, micrófono y volumen probados.</span></div></div>
+        <div class="check"><div class="mark">3</div><div><strong>Conexión</strong><br><span class="small">Cierra apps que consumen internet. Ten el enlace a mano.</span></div></div>
+        <div class="check"><div class="mark">4</div><div><strong>Material</strong><br><span class="small">Cuaderno, agua, pañuelos… lo que te haga sentir cómoda/o.</span></div></div>
+        <div class="check"><div class="mark">5</div><div><strong>Tiempo</strong><br><span class="small">Conéctate 3–5 minutos antes.</span></div></div>
+      </div>
+
+      <div class="card inset stack">
+        <h2 class="sec-title">Entorno recomendado</h2>
+        <div class="feature"><span class="dot"></span><div><strong>Privacidad</strong><br><span class="small">Usa audífonos y cierra puertas/ventanas.</span></div></div>
+        <div class="feature"><span class="dot"></span><div><strong>Iluminación</strong><br><span class="small">Luz frontal suave (evita contraluces).</span></div></div>
+        <div class="feature"><span class="dot"></span><div><strong>Postura</strong><br><span class="small">Siéntate cómoda/o; apoyo para espalda ayuda a la concentración.</span></div></div>
+        <div class="feature"><span class="dot"></span><div><strong>Interrupciones</strong><br><span class="small">Silencia notificaciones; avisa a tu entorno.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacidad -->
+  <section>
+    <div class="container card inset stack">
+      <h2 class="sec-title">Privacidad, confidencialidad y consentimiento</h2>
+      <p class="small">La información compartida en sesión es confidencial y se resguarda siguiendo criterios éticos y legales. Antes de iniciar, te compartiremos lineamientos de consentimiento informado. Si tienes dudas, puedes consultarlas en cualquier momento.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn ghost" href="mailto:aalvarizaes@miumg.edu.gt">Solicitar lineamientos</a>
+        <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problemas comunes -->
+  <section>
+    <div class="container card inset" style="display:grid;gap:12px">
+      <h2 class="sec-title">Si algo falla durante la videollamada</h2>
+      <div class="grid-3">
+        <div class="stack">
+          <div class="feature"><span class="dot"></span><div><strong>No hay audio</strong><br><span class="small">Revisa micrófono/altavoces en el sistema y la plataforma. Sal y vuelve a entrar.</span></div></div>
+          <div class="feature"><span class="dot"></span><div><strong>Eco o ruido</strong><br><span class="small">Usa audífonos y baja el volumen. Cierra otras llamadas/ventanas.</span></div></div>
+        </div>
+        <div class="stack">
+          <div class="feature"><span class="dot"></span><div><strong>Imagen congelada</strong><br><span class="small">Apaga/enciende cámara unos segundos. Reubícate cerca del router.</span></div></div>
+          <div class="feature"><span class="dot"></span><div><strong>Desconexión</strong><br><span class="small">Intenta reconectar con el mismo enlace. Si no, te enviaremos uno alterno.</span></div></div>
+        </div>
+        <div class="stack">
+          <div class="feature"><span class="dot"></span><div><strong>Plan B</strong><br><span class="small">Si persiste, reprogramamos o continuamos por llamada temporalmente.</span></div></div>
+          <div class="feature"><span class="dot"></span><div><strong>Asistencia</strong><br><span class="small">Escríbenos durante la sesión a <a href="https://wa.me/50245630621" target="_blank" rel="noopener">WhatsApp</a>.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reprogramación -->
+  <section>
+    <div class="container card inset">
+      <h2 class="sec-title">Reprogramación y cancelaciones</h2>
+      <p class="small">Si necesitas mover tu cita, avísanos con al menos <strong>12 horas</strong> de anticipación. Las cancelaciones fuera de ese plazo pueden considerarse sesión realizada. Si es una emergencia, cuéntanos y buscamos una alternativa.</p>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section>
+    <div class="container">
+      <div class="card inset" style="display:grid;grid-template-columns:1fr;gap:14px;align-items:center">
+        <div><strong>¿List@ para empezar en línea?</strong><br><span class="small">Agenda tu primera sesión o pregúntanos lo que necesites.</span></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar por WhatsApp</a>
+          <a class="btn ghost" href="mailto:aalvarizaes@miumg.edu.gt">Escribir por correo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div>© <span id="y"></span> Punto Psicológico · Hecho con cuidado · <a href="/aviso-de-privacidad">Aviso de privacidad</a></div>
+      <div class="footer-social" aria-label="Redes sociales">
+        <a href="https://instagram.com/punto.psicológico" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor"/><circle cx="12" cy="12" r="4" stroke="currentColor"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+          Instagram
+        </a>
+        <a href="https://facebook.com/punto.psicológico" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z" fill="currentColor"/></svg>
+          Facebook
+        </a>
+        <a href="https://wa.me/50245630621" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" stroke="currentColor"/><path d="M16.2 14.4c-.3.9-1.8 1.6-2.5 1.6-.6 0-1.4-.2-2.6-.9-2.2-1.3-3.6-3.6-3.7-3.8-.1-.2-.9-1.2-.9-2.2 0-1 .5-1.5 .7-1.7 .2-.2 .4-.3 .6-.3h .4c .1 0 .3 0 .4 .3l .6 1.4c .1 .3 .1 .4 0 .6 0 .2 -.1 .3 -.2 .5l -.2 .2c -.1 .1 -.2 .3 -.1 .4 .1 .2 .6 1.1 1.3 1.8 .9 .9 1.8 1.2 2 .1l .5 -.6c .1 -.1 .3 -.2 .5 -.2 .2 0 .3 0 .5 .1l 1.3 .6c .3 .1 .4 .2 .5 .3 .1 .2 .1 .5 0 .7Z" fill="currentColor"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Atención psicológica en línea",
+    "provider":{"@type":"Organization","name":"Punto Psicológico"},
+    "areaServed":"GT",
+    "availableChannel":{"@type":"ServiceChannel","serviceUrl":"https://wa.me/50245630621","availableLanguage":["es"]},
+    "hoursAvailable":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"17:00"}
+  }
+  </script>
+
+<script>
+  // Año
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Dropdown “Más”
+  const moreBtn = document.querySelector('.more-btn');
+  const moreMenu = document.getElementById('more-menu');
+  function closeMore(){ if(moreMenu){ moreMenu.style.display='none'; moreBtn?.setAttribute('aria-expanded','false'); } }
+  function toggleMore(e){
+    e.stopPropagation();
+    const open = moreMenu.style.display==='block';
+    moreMenu.style.display = open?'none':'block';
+    moreBtn.setAttribute('aria-expanded', String(!open));
+  }
+  moreBtn?.addEventListener('click', toggleMore);
+  document.addEventListener('click', (e)=>{ if(!moreMenu.contains(e.target) && !moreBtn.contains(e.target)) closeMore(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMore(); });
+
+  // Cerrar menú móvil al navegar
+  const navToggle = document.getElementById('nav-toggle');
+  document.querySelectorAll('.menu a.link').forEach(a=>{
+    a.addEventListener('click', ()=>{ if(navToggle?.checked) navToggle.checked=false; closeMore(); });
+  });
+</script>
+</body>
+</html>

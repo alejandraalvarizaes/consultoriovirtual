@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Misión y Visión | Punto Psicológico</title>
+<meta name="description" content="Nuestra misión y visión: un espacio seguro, humano y confidencial para acompañarte en tu bienestar emocional, con un enfoque ético y transformador." />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --salvia:#9DB5A3; --petroleo:#1F3B4D; --marfil:#F6F4EF; --humo:#6B7280; --mostaza:#C8A75D; --white:#fff;
+    --ff-title:"Poppins",system-ui; --ff-body:"Inter",system-ui;
+    --shadow:0 8px 28px rgba(0,0,0,.1);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--marfil);color:var(--petroleo)}
+  body{font-family:var(--ff-body)}
+
+  /* Layout base */
+  .shell,.container{width:min(1100px,92%);margin-inline:auto}
+  section{padding:40px 0} /* ↑ más respiro */
+  .h1{font-family:var(--ff-title);font-weight:700;font-size:clamp(1.9rem,4.8vw,3rem);margin:0}
+  .helper{color:#6B7280}
+
+  /* Header coherente */
+  header{position:sticky;top:0;z-index:100;background:rgba(246,244,239,.88);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px dashed rgba(31,59,77,.15)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:12px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand svg{width:38px;height:38px}
+  .brand .name{font-family:var(--ff-title);font-weight:700}
+  .brand .tag{font-size:.86rem;color:var(--humo)}
+
+  .menu.compact{display:flex;align-items:center;gap:14px;position:relative;flex-wrap:nowrap} /* ↑ gap */
+  .menu.compact a.link{padding:10px 14px;border-radius:999px;border:1px solid rgba(31,59,77,.12);background:rgba(255,255,255,.7);white-space:nowrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;font-weight:600}
+  .btn.primary{background:var(--petroleo);color:#fff}
+  .btn.ghost{border:1px solid rgba(31,59,77,.2);background:#fff}
+
+  .more{position:relative}
+  .more-btn{padding:10px 14px;border-radius:999px;border:1px solid rgba(31,59,77,.12);background:var(--marfil);cursor:pointer}
+  .more-menu{position:absolute;right:0;top:calc(100% + 8px);min-width:240px;background:var(--marfil);border:1px dashed rgba(31,59,77,.18);border-radius:16px;box-shadow:var(--shadow);padding:8px;display:none;z-index:1000}
+  .more-menu a{display:block;padding:10px 12px;border-radius:12px;border:1px solid transparent;white-space:nowrap}
+  .more-menu a:hover{background:#fff;border-color:rgba(31,59,77,.1)}
+
+  .burger{display:none;border:1px solid rgba(31,59,77,.2);border-radius:999px;padding:10px;background:#fff}
+  .burger span{display:block;width:20px;height:2px;background:var(--petroleo);border-radius:2px}
+  .burger span+span{margin-top:4px}
+  #nav-toggle{display:none}
+
+  @media (max-width:1100px){
+    .menu.compact{display:none; position:absolute; left:4%; right:4%; top:64px; background:var(--marfil);
+      border:1px dashed rgba(31,59,77,.18); border-radius:18px; padding:12px; flex-wrap:wrap}
+    .menu.compact a.link, .menu.compact .more, .menu.compact .btn{flex:1 1 calc(50% - 8px); margin:4px 0}
+    #nav-toggle:checked + .menu.compact{display:flex}
+    .burger{display:inline-block}
+  }
+
+  /* Tarjetas / grid */
+  .grid-2{display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:860px){.grid-2{grid-template-columns:1fr 1fr}}
+  .card{background:#fff;border:1px dashed rgba(31,59,77,.18);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+  .card .content{padding:18px}
+  .sec-title{font-family:var(--ff-title);font-size:clamp(1.2rem,2.6vw,1.6rem);margin:0 0 10px;position:relative;padding-left:26px}
+  .sec-title::before{content:""; position:absolute; left:0; top:.45em; width:12px; height:12px; border-radius:50%; background:color-mix(in srgb, var(--salvia) 70%, white); box-shadow:0 0 0 6px rgba(157,181,163,.25)}
+
+  .bullet{display:flex;gap:10px;align-items:flex-start}
+  .dot{width:12px;height:12px;border-radius:50%;background:color-mix(in srgb, var(--salvia) 70%, white);box-shadow:0 0 0 6px rgba(157,181,163,.18);margin-top:7px}
+  .list{display:grid;gap:12px;margin:0}
+
+  /* Hero */
+  .hero{padding:56px 0 24px;position:relative;overflow:hidden} /* ↑ bottom */
+  .orbit{position:absolute; inset:-120px -120px auto auto; width:360px; height:360px; border-radius:50%;
+         background: radial-gradient(circle at 55% 45%, rgba(157,181,163,.28), transparent 60%)}
+
+  /* CTA */
+  .cta-card{display:grid;grid-template-columns:1fr;gap:16px;padding:24px !important} /* ↑ */
+  .cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+  /* Footer */
+  footer{padding:26px 0;color:#6B7280;border-top:1px dashed rgba(31,59,77,.15)}
+  .footer-social{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+
+  :focus-visible{outline:3px solid color-mix(in srgb, var(--mostaza) 60%, var(--petroleo));outline-offset:10px;border-radius:10px}
+/* --- Reset de enlaces (incluye :visited) --- */
+a, a:visited { color: inherit; text-decoration: none; }
+a:hover { text-decoration: none; }
+
+/* --- Menú principal / dropdown --- */
+.menu.compact a.link,
+.more-menu a,
+.menu.compact a.link:visited,
+.more-menu a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --- Botones sociales del footer --- */
+.footer-social a,
+.footer-social a:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(31,59,77,.18);
+  background: var(--marfil);
+  color: var(--petroleo);
+  text-decoration: none;
+}
+.footer-social a:hover {
+  background: #fff;
+  border-color: rgba(31,59,77,.28);
+}
+.footer-social svg {
+  width: 18px; height: 18px; flex: 0 0 18px;
+  stroke: currentColor; fill: currentColor;
+}
+
+/* Opcional: quita el highlight azul en móviles */
+a { -webkit-tap-highlight-color: transparent; }
+/* --- Fix: dropdown "Más" en móvil no se salga del panel --- */
+@media (max-width:1100px){
+  /* El contenedor "Más" ya no es absoluto; que fluya dentro del panel */
+  .menu.compact .more{ position: static; flex: 1 1 100%; }
+
+  /* El menú se vuelve un bloque de ancho completo dentro del panel */
+  .menu.compact .more-menu{
+    position: relative;
+    inset: auto;
+    display: none;           /* se muestra con el mismo JS que ya tienes */
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 16px;
+    max-height: 55vh;        /* por si hay muchas opciones */
+    overflow: auto;
+  }
+
+  /* Botones del dropdown ocupan todo el ancho y no se cortan */
+  .menu.compact .more-menu a{
+    width: 100%;
+    white-space: nowrap;
+  }
+}
+</style>
+</head>
+<body>
+  <!-- Header coherente (logo clicable, sin “Inicio” en menú principal) -->
+  <header>
+    <div class="shell nav" role="navigation" aria-label="Principal">
+      <div class="brand">
+        <a href="/index.html" aria-label="Inicio">
+          <!-- Isotipo -->
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <defs><clipPath id="psi"><path d="M58 90v-8c-12-3-18-12-18-25V44h10v13c0 9 3 15 10 17V44h-8v-8h22v8h-8v30c7-2 10-8 10-17V44h10v13c0 13-6 22-18 25v8h-10z"/></clipPath></defs>
+            <circle cx="42" cy="48" r="26" fill="#9DB5A3" opacity=".9"/>
+            <circle cx="78" cy="48" r="26" fill="#C8A75D" opacity=".9"/>
+            <circle cx="60" cy="30" r="26" fill="#1F3B4D" opacity=".9"/>
+            <rect x="20" y="16" width="80" height="80" fill="#F6F4EF" clip-path="url(#psi)"/>
+          </svg>
+        </a>
+        <div>
+          <div class="name" style="font-family:'Poppins',system-ui;font-weight:700"><a href="/index.html">Punto Psicológico</a></div>
+          <div class="tag" style="color:#6B7280;font-size:.9rem">Espacio para el bienestar emocional</div>
+        </div>
+      </div>
+
+      <!-- Toggle móvil -->
+      <label for="nav-toggle" class="burger" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </label>
+      <input id="nav-toggle" type="checkbox" hidden>
+
+      <nav class="menu compact" id="menu" aria-label="Secciones">
+        <a class="link" href="/servicios.html">Servicios</a>
+        <a class="link" href="/sobre-mi.html">Sobre mí</a>
+        <a class="link" href="/blog.html">Blog</a>
+        <a class="link" href="/contacto.html">Contacto</a>
+        <div class="more">
+          <button class="more-btn" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu">Más ▾</button>
+          <div id="more-menu" class="more-menu" role="menu" aria-label="Más opciones">
+            <a role="menuitem" class="link" href="/modalidad.html">Modalidad</a>
+            <a role="menuitem" class="link" href="/mision-y-vision.html" aria-current="page">Misión & Visión</a>
+            <a role="menuitem" class="link" href="/medios.html">Medios</a>
+            <a role="menuitem" class="link" href="/galeria.html">Galería</a>
+            <a role="menuitem" class="link" href="/faq.html">FAQ</a>
+          </div>
+        </div>
+        <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="shell">
+        <h1 class="h1">Misión y Visión</h1>
+        <p class="helper" style="margin-top:6px">Nuestra razón de ser y hacia dónde vamos, con ética y calidez humana.</p>
+      </div>
+      <div class="orbit" aria-hidden="true"></div>
+    </section>
+
+    <!-- Misión & Visión -->
+    <section>
+      <div class="shell grid-2">
+        <div class="card">
+          <div class="content">
+            <h2 class="sec-title">Misión</h2>
+            <p>Brindar un <strong>espacio seguro, humano y confidencial</strong> donde cada persona pueda reconectarse consigo misma, comprender sus emociones y construir herramientas que le permitan alcanzar <strong>equilibrio, bienestar y plenitud emocional</strong>.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="content">
+            <h2 class="sec-title">Visión</h2>
+            <p>Ser un <strong>centro de referencia</strong> en el acompañamiento psicológico integral, reconocido por su <strong>calidez humana</strong>, <strong>compromiso ético</strong> y <strong>resultados transformadores</strong> en la vida emocional de las personas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Valores y principios éticos -->
+    <section>
+      <div class="shell">
+        <div class="card">
+          <div class="content">
+            <h2 class="sec-title">Valores y principios</h2>
+            <div class="list">
+              <div class="bullet"><span class="dot"></span><div><strong>Respeto y dignidad:</strong> cada historia importa; cuidamos tu ritmo y tu voz.</div></div>
+              <div class="bullet"><span class="dot"></span><div><strong>Confidencialidad:</strong> tu información se resguarda con criterios clínicos y legales.</div></div>
+              <div class="bullet"><span class="dot"></span><div><strong>Calidez y empatía:</strong> acompañamiento humano, sin juicios.</div></div>
+              <div class="bullet"><span class="dot"></span><div><strong>Rigor y ética profesional:</strong> intervención basada en evidencia y formación continua.</div></div>
+              <div class="bullet"><span class="dot"></span><div><strong>Autonomía y colaboración:</strong> diseñamos objetivos y pasos junto a ti.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enfoque terapéutico -->
+    <section>
+      <div class="shell">
+        <div class="card">
+          <div class="content">
+            <h2 class="sec-title">Nuestro enfoque</h2>
+            <p>Trabajamos desde una mirada <strong>humanista</strong> y <strong>cognitivo-conductual</strong>, integrando herramientas de regulación emocional, reestructuración de pensamiento y hábitos saludables. Priorizamos <strong>objetivos claros</strong> y <strong>pasos alcanzables</strong>, adaptados a tus necesidades.</p>
+            <div class="list" style="margin-top:10px">
+              <div class="bullet"><span class="dot"></span><div>Intervenciones prácticas (respiración 4-4-6, registro de pensamientos, exposición gradual).</div></div>
+              <div class="bullet"><span class="dot"></span><div>Énfasis en habilidades para la vida: autoconocimiento, límites, autocuidado.</div></div>
+              <div class="bullet"><span class="dot"></span><div>Seguimiento y ajustes periódicos basados en tu progreso.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section>
+      <div class="shell">
+        <div class="card cta-card">
+          <div class="cta-text">
+            <h2 class="sec-title" style="margin:0 0 8px">¿Listo para dar el primer paso?</h2>
+            <p class="helper" style="margin:0">Hablemos de lo que estás viviendo y diseñemos un plan a tu medida.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn primary" href="https://wa.me/50245630621?text=Hola%20Alejandra,%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n" target="_blank" rel="noopener">Agendar por WhatsApp</a>
+            <a class="btn ghost" href="mailto:aalvarizaes@miumg.edu.gt?subject=Consulta%20Punto%20Psicol%C3%B3gico">Escribir por correo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer coherente -->
+  <footer>
+    <div class="shell">
+      <div>© <span id="y"></span> Punto Psicológico · Hecho con cuidado · <a href="/aviso-de-privacidad">Aviso de privacidad</a></div>
+      <div class="footer-social" aria-label="Redes sociales">
+        <a href="https://instagram.com/punto.psicológico" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor"/><circle cx="12" cy="12" r="4" stroke="currentColor"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+          Instagram
+        </a>
+        <a href="https://facebook.com/punto.psicológico" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z" fill="currentColor"/></svg>
+          Facebook
+        </a>
+        <a href="https://wa.me/50245630621" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" stroke="currentColor"/><path d="M16.2 14.4c-.3.9-1.8 1.6-2.5 1.6-.6 0-1.4-.2-2.6-.9-2.2-1.3-3.6-3.6-3.7-3.8-.1-.2-.9-1.2-.9-2.2 0-1 .5-1.5 .7-1.7 .2-.2 .4-.3 .6-.3h .4c .1 0 .3 0 .4 .3l .6 1.4c .1 .3 .1 .4 0 .6 0 .2 -.1 .3 -.2 .5l -.2 .2c -.1 .1 -.2 .3 -.1 .4 .1 .2 .6 1.1 1.3 1.8 .9 .9 1.8 1.2 2 .1l .5 -.6c .1 -.1 .3 -.2 .5 -.2 .2 0 .3 0 .5 .1l 1.3 .6c .3 .1 .4 .2 .5 .3 .1 .2 .1 .5 0 .7Z" fill="currentColor"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"AboutPage",
+    "name":"Misión y Visión — Punto Psicológico",
+    "url":"https://tudominio.com/mision-y-vision.html",
+    "publisher":{"@type":"Organization","name":"Punto Psicológico"},
+    "description":"Misión y visión del centro: acompañamiento psicológico seguro, humano y confidencial. Ética profesional y resultados transformadores."
+  }
+  </script>
+
+<script>
+  // Año footer
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Menú “Más”
+  const moreBtn = document.querySelector('.more-btn');
+  const moreMenu = document.getElementById('more-menu');
+  function closeMore(){ if(moreMenu){ moreMenu.style.display='none'; moreBtn?.setAttribute('aria-expanded','false'); } }
+  function toggleMore(e){
+    e.stopPropagation();
+    const open = moreMenu.style.display==='block';
+    moreMenu.style.display = open?'none':'block';
+    moreBtn.setAttribute('aria-expanded', String(!open));
+  }
+  moreBtn?.addEventListener('click', toggleMore);
+  document.addEventListener('click', (e)=>{ if(!moreMenu.contains(e.target) && !moreBtn.contains(e.target)) closeMore(); });
+
+  // Cerrar menú móvil al navegar
+  const navToggle = document.getElementById('nav-toggle');
+  document.querySelectorAll('.menu a.link').forEach(a=>{
+    a.addEventListener('click', ()=>{ if(navToggle?.checked) navToggle.checked=false; closeMore(); });
+  });
+</script>
+</body>
+</html>
