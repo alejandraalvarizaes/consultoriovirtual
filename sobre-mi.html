@@ -18,7 +18,7 @@
   body{font-family:var(--ff-body);line-height:1.65}
   a,a:visited{color:inherit;text-decoration:none} a:hover{text-decoration:none}
 
-  .shell{width:min(1100px,92%);margin-inline:auto}
+  .shell{width:min(1100px,92%);margin-inline:auto; overflow-x:clip;} /* evita scroll horiz. */
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:999px;font-weight:600}
   .btn.primary{background:var(--petroleo);color:#fff}
   .btn.ghost{border:1px solid rgba(31,59,77,.2);background:#fff}
@@ -32,7 +32,7 @@
   .brand .name{font-family:var(--ff-title);font-weight:700}
   .brand .tag{font-size:.86rem;color:var(--humo)}
 
-  .menu.compact{display:flex;align-items:center;gap:14px;position:relative;flex-wrap:nowrap} /* ↑ gap 14 */
+  .menu.compact{display:flex;align-items:center;gap:14px;position:relative;flex-wrap:nowrap}
   .menu.compact a.link{padding:10px 14px;border-radius:999px;border:1px solid rgba(31,59,77,.12);background:rgba(255,255,255,.7);white-space:nowrap}
   .menu.compact a.link[aria-current="page"]{box-shadow:inset 0 0 0 2px rgba(31,59,77,.15);background:#fff}
   .more{position:relative}
@@ -61,7 +61,7 @@
   .lead{color:var(--humo);max-width:65ch}
 
   /* Secciones */
-  section{padding:40px 0} /* ↑ unificado */
+  section{padding:40px 0}
   .sec-title{font-family:var(--ff-title);font-size:clamp(1.2rem,2.6vw,1.6rem);margin:0 0 12px;position:relative;padding-left:26px}
   .sec-title::before{content:"";position:absolute;left:0;top:.45em;width:12px;height:12px;border-radius:50%;background:color-mix(in srgb, var(--salvia) 70%, white);box-shadow:0 0 0 6px rgba(157,181,163,.25)}
 
@@ -73,8 +73,59 @@
   @media(min-width:860px){.grid-3{grid-template-columns:repeat(3,1fr)}}
 
   .card{background:#fff;border:1px dashed rgba(31,59,77,.18);border-radius:22px;box-shadow:var(--shadow);padding:18px}
-  .portrait{width:100%;height:280px;object-fit:cover;border-radius:18px;border:1px dashed rgba(31,59,77,.18);background:#ddd}
 
+  /* ===== Retrato sin recortes y sin overflow ===== */
+.portrait-frame {
+  position: relative;
+  width: 100%;
+  border-radius: 18px;
+  border: 1px dashed rgba(31,59,77,.18);
+  overflow: hidden;
+  contain: paint; /* evita que el blur se salga */
+  box-shadow: 0 8px 28px rgba(0,0,0,.08);
+  background: var(--marfil);
+  transform: translateX(-7%);  /* 👈 desplaza todo el fondo un poco a la izquierda */
+}
+
+/* Aspect-ratio por breakpoint */
+@media (min-width:861px) { .portrait-frame { aspect-ratio: 16 / 9;  } }
+@media (max-width:860px) { .portrait-frame { aspect-ratio: 9 / 16; } }
+/* ===== Móvil ===== */
+@media (max-width:860px) {
+  .portrait-frame {
+    aspect-ratio: 9 / 16;
+    transform: translateX(-12%);   /* 👈 Centrado normal en celular */
+  }
+}
+/* Fondo blur */
+.portrait-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--src);
+  background-size: cover;
+  background-position: center;
+  filter: blur(26px) saturate(.95);
+  opacity: .5;
+  transform: translateX(0%);  /* 👈 desplaza todo el fondo un poco a la izquierda */
+  will-change: transform;
+}
+
+/* Imagen principal */
+.portrait {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* se ve completa */
+  object-position: center;
+  display: block;
+  background: transparent;
+  max-width: 100%;
+  transform: translateX(0%);  /* 👈 misma compensación que el fondo */
+}
+
+  /* Badges y steps */
   .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:var(--petroleo);color:#fff;font-size:.86rem;margin-right:8px;margin-bottom:6px}
   .step{display:flex;gap:12px;align-items:flex-start}
   .step .num{width:32px;height:32px;border-radius:50%;background:var(--salvia);display:grid;place-items:center;color:var(--petroleo);font-weight:700}
@@ -90,42 +141,16 @@
   .footer-social svg{width:18px;height:18px;flex:0 0 18px;stroke:currentColor;fill:currentColor}
 
   :focus-visible{outline:3px solid color-mix(in srgb, var(--mostaza) 60%, var(--petroleo));outline-offset:8px;border-radius:10px}
-/* --- Fix: dropdown "Más" en móvil no se salga del panel --- */
-@media (max-width:1100px){
-  /* El contenedor "Más" ya no es absoluto; que fluya dentro del panel */
-  .menu.compact .more{ position: static; flex: 1 1 100%; }
 
-  /* El menú se vuelve un bloque de ancho completo dentro del panel */
-  .menu.compact .more-menu{
-    position: relative;
-    inset: auto;
-    display: none;           /* se muestra con el mismo JS que ya tienes */
-    width: 100%;
-    margin-top: 8px;
-    border-radius: 16px;
-    max-height: 55vh;        /* por si hay muchas opciones */
-    overflow: auto;
+  /* Fix: dropdown "Más" en móvil sin desbordarse */
+  @media (max-width:1100px){
+    .menu.compact .more{ position:static; flex:1 1 100%; }
+    .menu.compact .more-menu{
+      position:relative; inset:auto; display:none; width:100%; margin-top:8px;
+      border-radius:16px; max-height:55vh; overflow:auto;
+    }
+    .menu.compact .more-menu a{ width:100%; white-space:nowrap; }
   }
-
-  /* Botones del dropdown ocupan todo el ancho y no se cortan */
-  .menu.compact .more-menu a{
-    width: 100%;
-    white-space: nowrap;
-  }
-}
-/* Mostrar completa en 9:16 */
-.portrait{
-  width: 100%;
-  aspect-ratio: 9 / 16;     /* relación nativa */
-  object-fit: cover;        /* llena el marco; no deforma */
-  object-position: center;  
-  border-radius: 18px;
-  border: 1px dashed rgba(31,59,77,.18);
-  background:#ddd;
-}
-@media (min-width:860px){
-  .portrait{ max-height: 680px; }   /* algo más alta por ser 9:16 */
-}
 </style>
 </head>
 <body>
@@ -133,7 +158,7 @@
   <header>
     <div class="shell nav" role="navigation" aria-label="Principal">
       <div class="brand">
-        <a href="index.html" aria-label="Inicio">
+        <a href="/index.html" aria-label="Inicio">
           <!-- Isotipo -->
           <svg viewBox="0 0 120 120" aria-hidden="true">
             <defs><clipPath id="psi"><path d="M58 90v-8c-12-3-18-12-18-25V44h10v13c0 9 3 15 10 17V44h-8v-8h22v8h-8v30c7-2 10-8 10-17V44h10v13c0 13-6 22-18 25v8h-10z"/></clipPath></defs>
@@ -144,7 +169,7 @@
           </svg>
         </a>
         <div>
-          <div class="name"><a href="index.html">Punto Psicológico</a></div>
+          <div class="name"><a href="/index.html">Punto Psicológico</a></div>
           <div class="tag">Espacio para el bienestar emocional</div>
         </div>
       </div>
@@ -157,18 +182,18 @@
 
       <!-- Menú compacto + Más -->
       <nav class="menu compact" id="menu" aria-label="Secciones">
-        <a class="link" href="servicios.html">Servicios</a>
-        <a class="link" href="sobre-mi.html" aria-current="page">Sobre mí</a>
-        <a class="link" href="blog.html">Blog</a>
-        <a class="link" href="contacto.html">Contacto</a>
+        <a class="link" href="/servicios.html">Servicios</a>
+        <a class="link" href="/sobre-mi.html" aria-current="page">Sobre mí</a>
+        <a class="link" href="/blog.html">Blog</a>
+        <a class="link" href="/contacto.html">Contacto</a>
         <div class="more">
           <button class="more-btn" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu">Más ▾</button>
           <div id="more-menu" class="more-menu" role="menu" aria-label="Más opciones">
-            <a role="menuitem" class="link" href="modalidad.html">Modalidad</a>
-            <a role="menuitem" class="link" href="mision-y-vision.html">Misión & Visión</a>
-            <a role="menuitem" class="link" href="medios.html">Medios</a>
-            <a role="menuitem" class="link" href="galeria.html">Galería</a>
-            <a role="menuitem" class="link" href="faq.html">FAQ</a>
+            <a role="menuitem" class="link" href="/modalidad.html">Modalidad</a>
+            <a role="menuitem" class="link" href="/mision-y-vision.html">Misión & Visión</a>
+            <a role="menuitem" class="link" href="/medios.html">Medios</a>
+            <a role="menuitem" class="link" href="/galeria.html">Galería</a>
+            <a role="menuitem" class="link" href="/faq.html">FAQ</a>
           </div>
         </div>
         <a class="btn primary" href="https://wa.me/50245630621" target="_blank" rel="noopener">Agendar</a>
@@ -189,7 +214,14 @@
   <section>
     <div class="shell grid-2">
       <div class="card">
-<img class="portrait" src="media/alejandra-alvarizaes.jpeg" alt="Retrato de Alejandra Alvarizaes" width="900" height="1600" loading="lazy" decoding="async">
+<figure class="portrait-frame" style="--src:url('/media/alejandra-alvarizaes.jpeg')">
+  <img
+    class="portrait"
+    src="/media/alejandra-alvarizaes.jpeg"
+    alt="Retrato de Alejandra Alvarizaes"
+    width="900" height="1600"  loading="lazy" decoding="async">
+</figure>
+        <div style="margin-top:12px">
           <span class="badge">Empatía</span>
           <span class="badge">Escucha activa</span>
           <span class="badge">Acompañamiento respetuoso</span>
@@ -391,10 +423,4 @@
   });
 </script>
 </body>
-
 </html>
-
-
-
-
-
