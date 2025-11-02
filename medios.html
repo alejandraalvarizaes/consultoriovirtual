@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Medios (Videos, Podcasts y Webinar) | Punto Psicológico</title>
-<meta name="description" content="Videos, podcasts y webinar seleccionados sobre bienestar emocional, ansiedad, autoestima y acompañamiento psicológico." />
+<title>Medios (Videos, Podcasts, Storybooks y Musicoterapia) | Punto Psicológico</title>
+<meta name="description" content="Videos, podcasts, storybooks en PDF y musicoterapia sobre bienestar emocional, ansiedad, autoestima y acompañamiento psicológico." />
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
 
@@ -27,14 +27,14 @@
   .h1{font-family:var(--ff-title);font-weight:700;line-height:1.12;font-size:clamp(1.9rem,4.8vw,3rem);margin:0}
   .helper{color:var(--humo)}
 
-  /* Header / nav coherente */
+  /* Header / nav */
   header{position:sticky;top:0;z-index:100;background:rgba(246,244,239,.88);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px dashed rgba(31,59,77,.15)}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:12px}
   .brand{display:flex;align-items:center;gap:10px}
   .brand svg{width:38px;height:38px}
   .brand .name{font-family:var(--ff-title);font-weight:700}
   .brand .tag{font-size:.86rem;color:var(--humo)}
-  .menu.compact{display:flex;align-items:center;gap:14px;position:relative;flex-wrap:nowrap} /* ↑ antes 10px */
+  .menu.compact{display:flex;align-items:center;gap:14px;position:relative;flex-wrap:nowrap}
   .menu.compact a.link{padding:10px 14px;border-radius:999px;border:1px solid rgba(31,59,77,.12);background:rgba(255,255,255,.7);white-space:nowrap}
   .more{position:relative}
   .more-btn{padding:10px 14px;border-radius:999px;border:1px solid rgba(31,59,77,.12);background:var(--marfil);cursor:pointer}
@@ -54,16 +54,16 @@
   }
 
   /* Espaciado general */
-  .hero{padding:56px 0 24px;position:relative;overflow:hidden} /* ↑ bottom +4px */
-  section{padding:40px 0} /* ↑ antes 28px */
+  .hero{padding:56px 0 24px;position:relative;overflow:hidden}
+  section{padding:40px 0}
   .orbit{position:absolute; inset:-120px -120px auto auto; width:380px; height:380px; border-radius:50%;
          background: radial-gradient(circle at 55% 45%, rgba(157,181,163,.35), transparent 60%)}
 
   /* Grid tarjetas */
-  .grid-3{display:grid;grid-template-columns:1fr;gap:18px} /* ↑ gap sutil */
+  .grid-3{display:grid;grid-template-columns:1fr;gap:18px}
   @media(min-width:860px){.grid-3{grid-template-columns:repeat(3,1fr)}}
   .card{background:#fff;border:1px dashed rgba(31,59,77,.18);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
-  .card .content{padding:16px} /* ↑ 14 → 16 */
+  .card .content{padding:16px}
   .card h3{font-family:var(--ff-title);font-size:1.04rem;margin:6px 0}
   .meta{font-size:.92rem;color:var(--humo)}
 
@@ -71,45 +71,35 @@
   .embed{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-bottom:1px dashed rgba(31,59,77,.12)}
   .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 
+  /* PDF viewer */
+  .embed.pdf{aspect-ratio:auto;background:#fff;height:460px;border:1px dashed rgba(31,59,77,.18)}
+  .embed.pdf iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
   /* Footer */
-  footer{padding:26px 0;color:var(--humo);font-size:.95rem;border-top:1px dashed rgba(31,59,77,.15)} /* ↑ 24 → 26 */
+  footer{padding:26px 0;color:var(--humo);font-size:.95rem;border-top:1px dashed rgba(31,59,77,.15)}
   .footer-social{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
   .footer-social a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(31,59,77,.18);background:var(--marfil)}
 
   :focus-visible{outline:3px solid color-mix(in srgb, var(--mostaza) 60%, var(--petroleo));outline-offset:10px;border-radius:10px}
-/* --- Fix: dropdown "Más" en móvil no se salga del panel --- */
-@media (max-width:1100px){
-  /* El contenedor "Más" ya no es absoluto; que fluya dentro del panel */
-  .menu.compact .more{ position: static; flex: 1 1 100%; }
 
-  /* El menú se vuelve un bloque de ancho completo dentro del panel */
-  .menu.compact .more-menu{
-    position: relative;
-    inset: auto;
-    display: none;           /* se muestra con el mismo JS que ya tienes */
-    width: 100%;
-    margin-top: 8px;
-    border-radius: 16px;
-    max-height: 55vh;        /* por si hay muchas opciones */
-    overflow: auto;
+  /* Fix dropdown móvil */
+  @media (max-width:1100px){
+    .menu.compact .more{ position: static; flex: 1 1 100%; }
+    .menu.compact .more-menu{
+      position: relative; inset: auto; display: none; width: 100%; margin-top: 8px;
+      border-radius: 16px; max-height: 55vh; overflow: auto;
+    }
+    .menu.compact .more-menu a{width:100%;white-space:nowrap}
   }
-
-  /* Botones del dropdown ocupan todo el ancho y no se cortan */
-  .menu.compact .more-menu a{
-    width: 100%;
-    white-space: nowrap;
-  }
-}
 </style>
 </head>
 
 <body>
-  <!-- Header coherente (sin “Inicio” en el menú principal) -->
+  <!-- Header -->
   <header>
     <div class="container nav" role="navigation" aria-label="Principal">
       <div class="brand">
-        <a href="index.html" aria-label="Inicio">
-          <!-- Isotipo -->
+        <a href="/index.html" aria-label="Inicio">
           <svg viewBox="0 0 120 120" aria-hidden="true">
             <defs><clipPath id="psi"><path d="M58 90v-8c-12-3-18-12-18-25V44h10v13c0 9 3 15 10 17V44h-8v-8h22v8h-8v30c7-2 10-8 10-17V44h10v13c0 13-6 22-18 25v8h-10z"/></clipPath></defs>
             <circle cx="42" cy="48" r="26" fill="#9DB5A3" opacity=".9"/>
@@ -119,7 +109,7 @@
           </svg>
         </a>
         <div>
-          <div class="name"><a href="index.html">Punto Psicológico</a></div>
+          <div class="name"><a href="/index.html">Punto Psicológico</a></div>
           <div class="tag">Espacio para el bienestar emocional</div>
         </div>
       </div>
@@ -130,19 +120,19 @@
       <input id="nav-toggle" type="checkbox" hidden>
 
       <nav class="menu compact" id="menu" aria-label="Secciones">
-        <a class="link" href="servicios.html">Servicios</a>
-        <a class="link" href="sobre-mi.html">Sobre mí</a>
-        <a class="link" href="blog.html">Blog</a>
-        <a class="link" href="contacto.html">Contacto</a>
+        <a class="link" href="/servicios.html">Servicios</a>
+        <a class="link" href="/sobre-mi.html">Sobre mí</a>
+        <a class="link" href="/blog.html">Blog</a>
+        <a class="link" href="/contacto.html">Contacto</a>
 
         <div class="more">
           <button class="more-btn" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu">Más ▾</button>
           <div id="more-menu" class="more-menu" role="menu" aria-label="Más opciones">
-            <a role="menuitem" class="link" href="modalidad.html">Modalidad</a>
-            <a role="menuitem" class="link" href="mision-y-vision.html">Misión & Visión</a>
-            <a role="menuitem" class="link" href="medios.html" aria-current="page">Medios</a>
-            <a role="menuitem" class="link" href="galeria.html">Galería</a>
-            <a role="menuitem" class="link" href="faq.html">FAQ</a>
+            <a role="menuitem" class="link" href="/modalidad.html">Modalidad</a>
+            <a role="menuitem" class="link" href="/mision-y-vision.html">Misión & Visión</a>
+            <a role="menuitem" class="link" href="/medios.html" aria-current="page">Medios</a>
+            <a role="menuitem" class="link" href="/galeria.html">Galería</a>
+            <a role="menuitem" class="link" href="/faq.html">FAQ</a>
           </div>
         </div>
 
@@ -157,114 +147,166 @@
       <div class="orbit" aria-hidden="true"></div>
       <div class="container">
         <h1 class="h1">Medios</h1>
-        <p class="helper">Videos, podcasts y un webinar para acompañar tu proceso con recursos prácticos.</p>
+        <p class="helper">Videos, podcasts (YouTube), storybooks en PDF y musicoterapia para acompañar tu proceso.</p>
       </div>
     </section>
 
-    <!-- Videos -->
+    <!-- Videos (actualizados) -->
     <section>
       <div class="container">
         <h2 class="sec-title">Videos</h2>
         <div class="grid-3">
           <article class="card">
             <div class="embed">
-              <iframe src="https://www.youtube.com/embed/MiZ3DW4RG4Q" title="Blindaje emocional mediante la autorregulación (TEDx Vero Marcos)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/HKUlKZDs3H8" title="Video 1 — Ansiedad y respiración consciente" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="content">
-              <h3>Blindaje emocional: autorregulación</h3>
-              <p class="meta">Vero Marcos · TEDx Coatzacoalcos</p>
-              <a class="btn ghost" href="https://www.youtube.com/watch?v=MiZ3DW4RG4Q" target="_blank" rel="noopener">Ver en YouTube</a>
+              <h3>La Inseguridad</h3>
+              <p class="meta">Selección</p>
+              <a class="btn ghost" href="https://www.youtube.com/watch?v=HKUlKZDs3H8" target="_blank" rel="noopener">Ver en YouTube</a>
             </div>
           </article>
 
           <article class="card">
             <div class="embed">
-              <iframe src="https://www.youtube.com/embed/HxXvGpLJCM8" title="3 claves para el desarrollo personal — Brian Tracy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/eZ6PQ9ILzTg" title="Video 2 — Equilibrio emocional y bienestar" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="content">
-              <h3>3 claves para el desarrollo personal</h3>
-              <p class="meta">Selección Brian Tracy</p>
-              <a class="btn ghost" href="https://www.youtube.com/watch?v=HxXvGpLJCM8" target="_blank" rel="noopener">Ver en YouTube</a>
+              <h3>Trastornos alimentarios</h3>
+              <p class="meta">Selección</p>
+              <a class="btn ghost" href="https://www.youtube.com/watch?v=eZ6PQ9ILzTg" target="_blank" rel="noopener">Ver en YouTube</a>
             </div>
           </article>
 
           <article class="card">
             <div class="embed">
-              <iframe src="https://www.youtube.com/embed/jIgmhgGak2k" title="Autoestima y críticas — Mario Alonso Puig" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/KUXJeTwwZSM" title="Video 3 — Cápsula de autocuidado (Shorts)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="content">
-              <h3>Autoestima y gestión de críticas</h3>
-              <p class="meta">Conversaciones con Mario Alonso Puig</p>
-              <a class="btn ghost" href="https://www.youtube.com/watch?v=jIgmhgGak2k" target="_blank" rel="noopener">Ver en YouTube</a>
+              <h3>Apego en las relaciones</h3>
+              <p class="meta">Selección</p>
+              <a class="btn ghost" href="https://www.youtube.com/shorts/KUXJeTwwZSM" target="_blank" rel="noopener">Ver en YouTube</a>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Podcasts -->
+    <!-- Podcasts (2 videos de YouTube) -->
     <section>
       <div class="container">
         <h2 class="sec-title">Podcasts</h2>
         <div class="grid-3">
           <article class="card">
+            <div class="embed">
+              <iframe src="https://www.youtube.com/embed/gtIb29z-iac" title="Podcast 1 — Escucha consciente y bienestar emocional" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
             <div class="content">
-              <h3>Ejercicio de escucha activa</h3>
-              <p class="meta">Apple Podcasts</p>
+              <h3>Podcast 1 · Depresión</h3>
+              <p class="meta">YouTube</p>
+              <a class="btn ghost" href="https://youtu.be/gtIb29z-iac" target="_blank" rel="noopener">Ver en YouTube</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="embed">
+              <iframe src="https://www.youtube.com/embed/4-lN_CAp2JI" title="Podcast 2 — Autoestima práctica y autoconfianza" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="content">
+              <h3>Podcast 2 · Dependencia emocional</h3>
+              <p class="meta">YouTube</p>
+              <a class="btn ghost" href="https://youtu.be/4-lN_CAp2JI" target="_blank" rel="noopener">Ver en YouTube</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Storybooks (3 PDFs) -->
+    <section>
+      <div class="container">
+        <h2 class="sec-title">Storybooks</h2>
+        <div class="grid-3">
+          <article class="card">
+            <div class="embed pdf">
+              <iframe src="media/download.pdf#view=FitH" title="Storybook 1 — Historias para crecer"></iframe>
+            </div>
+            <div class="content">
+              <h3>Storybook 1 · Historias para crecer</h3>
               <div class="inline" style="display:flex;gap:10px;flex-wrap:wrap">
-                <a class="btn primary" href="https://podcasts.apple.com/es/podcast/ejercicio-de-escucha-activa/id1571328022?i=1000534148134" target="_blank" rel="noopener">Escuchar</a>
-                <a class="btn ghost" href="https://podcasts.apple.com/es/podcast/ejercicio-de-escucha-activa/id1571328022?i=1000534148134" target="_blank" rel="noopener">Abrir en Apple Podcasts</a>
+                <a class="btn primary" href="media/download.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+                <a class="btn ghost" href="media/download.pdf#page=1" target="_blank" rel="noopener">Ir a la página 1</a>
               </div>
             </div>
           </article>
 
           <article class="card">
+            <div class="embed pdf">
+              <iframe src="media/download 2.pdf#view=FitH" title="Storybook 2 — Emociones y resiliencia"></iframe>
+            </div>
             <div class="content">
-              <h3>Primeros pasos para superar la ansiedad</h3>
-              <p class="meta">Apple Podcasts</p>
+              <h3>Storybook 2 · Emociones y resiliencia</h3>
               <div class="inline" style="display:flex;gap:10px;flex-wrap:wrap">
-                <a class="btn primary" href="https://podcasts.apple.com/es/podcast/primeros-pasos-para-superar-la-ansiedad-completamente/id1517059592?i=1000697859916" target="_blank" rel="noopener">Escuchar</a>
-                <a class="btn ghost" href="https://podcasts.apple.com/es/podcast/primeros-pasos-para-superar-la-ansiedad-completamente/id1517059592?i=1000697859916" target="_blank" rel="noopener">Abrir en Apple Podcasts</a>
+                <a class="btn primary" href="media/download 2.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+                <a class="btn ghost" href="media/download 2.pdf#page=1" target="_blank" rel="noopener">Ir a la página 1</a>
               </div>
             </div>
           </article>
 
           <article class="card">
+            <div class="embed pdf">
+              <iframe src="media/historybook.pdf#view=FitH" title="Storybook 3 — Autoestima y confianza"></iframe>
+            </div>
             <div class="content">
-              <h3>Autoestima práctica</h3>
-              <p class="meta">Apple Podcasts</p>
+              <h3>Storybook 3 · Autoestima y confianza</h3>
               <div class="inline" style="display:flex;gap:10px;flex-wrap:wrap">
-                <a class="btn primary" href="https://podcasts.apple.com/es/podcast/autoestima-pr%C3%A1ctica/id825713023?i=1000679061415" target="_blank" rel="noopener">Escuchar</a>
-                <a class="btn ghost" href="https://podcasts.apple.com/es/podcast/autoestima-pr%C3%A1ctica/id825713023?i=1000679061415" target="_blank" rel="noopener">Abrir en Apple Podcasts</a>
+                <a class="btn primary" href="media/historybook.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+                <a class="btn ghost" href="media/historybook.pdf#page=1" target="_blank" rel="noopener">Ir a la página 1</a>
               </div>
             </div>
           </article>
         </div>
-
-        <p class="helper" style="margin-top:12px">Tip: si usas Spotify o YouTube Music, compárteme tus episodios favoritos y los añadimos.</p>
+        <p class="helper" style="margin-top:12px">Coloca tus PDFs en <code>/media</code> con los nombres <code>storybook1.pdf</code>, <code>storybook2.pdf</code>, <code>storybook3.pdf</code>.</p>
       </div>
     </section>
 
-    <!-- Webinar -->
+    <!-- Musicoterapia -->
     <section>
       <div class="container">
-        <div class="card" style="margin-top:6px"> <!-- ligero respiro -->
-          <div class="content">
-            <div class="bar" style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px">
-              <h2 class="sec-title" style="margin:0">Webinar</h2>
-              <span class="badge" style="display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(31,59,77,.18);background:var(--marfil);color:#1F3B4D">Grabado</span>
+        <h2 class="sec-title">Musicoterapia</h2>
+        <div class="grid-3">
+          <article class="card">
+            <div class="embed">
+              <iframe src="https://www.youtube.com/embed/E6EECP7Cps0" title="Musicoterapia 1 — Sesión en vivo (YouTube Live)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
-            <h3 style="margin:0 0 8px;font-family:'Poppins',system-ui;font-size:1.06rem">
-              ¿Cómo regular la ansiedad de mi familia durante el aislamiento social?
-            </h3>
-            <div class="embed" style="margin-top:12px">
-              <iframe src="https://www.youtube.com/embed/mndyBpiZE3A" title="Webinar Psicología — Regular la ansiedad en familia" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            <div class="content">
+              <h3>Sesión en vivo</h3>
+              <p class="meta">YouTube Live</p>
+              <a class="btn ghost" href="https://www.youtube.com/live/E6EECP7Cps0" target="_blank" rel="noopener">Ver en YouTube</a>
             </div>
-            <div class="inline" style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-              <a class="btn primary" href="https://youtu.be/mndyBpiZE3A" target="_blank" rel="noopener">Ver en YouTube</a>
-              <a class="btn ghost" href="/contacto.html">¿Dudas? Escríbeme</a>
+          </article>
+
+          <article class="card">
+            <div class="embed">
+              <iframe src="https://www.youtube.com/embed/okCdYzfo3yE" title="Musicoterapia 2 — Respiración y regulación (YouTube Live)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
-          </div>
+            <div class="content">
+              <h3>Sesión en vivo</h3>
+              <p class="meta">YouTube Live</p>
+              <a class="btn ghost" href="https://www.youtube.com/live/okCdYzfo3yE" target="_blank" rel="noopener">Ver en YouTube</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="embed">
+              <iframe src="https://www.youtube.com/embed/AOgCUPyvPbc" title="Musicoterapia 3 — Cápsula de autocuidado" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="content">
+              <h3>Cápsula</h3>
+              <p class="meta">Selección</p>
+              <a class="btn ghost" href="https://youtu.be/AOgCUPyvPbc" target="_blank" rel="noopener">Ver en YouTube</a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -272,7 +314,7 @@
     <!-- CTA -->
     <section>
       <div class="container">
-        <div class="card" style="display:grid;grid-template-columns:1fr auto;gap:18px;padding:24px;margin-top:8px"> <!-- ↑ padding y margen -->
+        <div class="card" style="display:grid;grid-template-columns:1fr auto;gap:18px;padding:24px;margin-top:8px">
           <div>
             <h2 class="sec-title" style="margin:0 0 8px">¿Listo para dar el primer paso?</h2>
             <p class="helper" style="margin:0">Agenda tu sesión en línea. Te acompaño con calidez y herramientas prácticas.</p>
@@ -286,7 +328,7 @@
     </section>
   </main>
 
-  <!-- Footer coherente -->
+  <!-- Footer -->
   <footer>
     <div class="container">
       <div>© <span id="y"></span> Punto Psicológico · Hecho con cuidado · <a href="/aviso-de-privacidad">Aviso de privacidad</a></div>
@@ -300,8 +342,15 @@
           Facebook
         </a>
         <a href="https://wa.me/50245630621" target="_blank" rel="noopener" aria-label="WhatsApp">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" stroke="currentColor"/><path d="M16.2 14.4c-.3.9-1.8 1.6-2.5 1.6-.6 0-1.4-.2-2.6-.9-2.2-1.3-3.6-3.6-3.7-3.8-.1-.2-.9-1.2-.9-2.2 0-1 .5-1.5 .7-1.7 .2-.2 .4-.3 .6-.3h .4c .1 0 .3 0 .4 .3l .6 1.4c .1 .3 .1 .4 0 .6 0 .2 -.1 .3 -.2 .5l -.2 .2c -.1 .1 -.2 .3 -.1 .4 .1 .2 .6 1.1 1.3 1.8 .9 .9 1.8 1.2 2 .1l .5 -.6c .1 -.1 .3 -.2 .5 -.2 .2 0 .3 0 .5 .1l 1.3 .6c .3 .1 .4 .2 .5 .3 .1 .2 .1 .5 0 .7Z" fill="currentColor"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" stroke="currentColor"/><path d="M16.2 14.4c-.3.9-1.8 1.6-2.5 1.6-.6 0-1.4-.2-2.6-.9-2.2-1.3-3.6-3.6-3.7-3.8-.1-.2-.9-1.2-.9-2.2 0-1 .5-1.5.7-1.7.2-.2.4-.3 .6-.3h .4c .1 0 .3 0 .4 .3l .6 1.4c .1 .3 .1 .4 0 .6 0 .2 -.1 .3 -.2 .5l -.2 .2c -.1 .1 -.2 .3 -.1 .4 .1 .2 .6 1.1 1.3 1.8 .9 .9 1.8 1.2 2 .1l .5 -.6c .1 -.1 .3 -.2 .5 -.2 .2 0 .3 0 .5 .1l 1.3 .6c .3 .1 .4 .2 .5 .3 .1 .2 .1 .5 0 .7Z" fill="currentColor"/></svg>
           WhatsApp
+        </a>
+        <a href="https://youtube.com/@ALEJANDRAALVARIZAES" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M22 12s0-4-1-5c-.6-.6-1.3-.9-2.1-1C17.7 5.7 12 5.7 12 5.7s-5.7 0-6.9.3c-.8.1-1.5.4-2.1 1C2 8 2 12 2 12s0 4 1 5c.6.6 1.3.9 2.1 1 1.2.3 6.9.3 6.9.3s5.7 0 6.9-.3c.8-.1 1.5-.4 2.1-1 1-1 1-5 1-5Z" stroke="currentColor"/>
+            <path d="M10 9.75 15 12l-5 2.25V9.75Z" fill="currentColor"/>
+          </svg>
+          YouTube
         </a>
       </div>
     </div>
@@ -314,15 +363,20 @@
     "@type":"CollectionPage",
     "name":"Medios — Punto Psicológico",
     "url":"https://tudominio.com/medios.html",
-    "about":["videos","podcasts","webinar","bienestar emocional","psicología"],
+    "about":["videos","podcasts","storybook","pdf","musicoterapia","bienestar emocional","psicología"],
     "hasPart":[
-      {"@type":"VideoObject","name":"Blindaje emocional: autorregulación","url":"https://www.youtube.com/watch?v=MiZ3DW4RG4Q"},
-      {"@type":"VideoObject","name":"3 claves para el desarrollo personal","url":"https://www.youtube.com/watch?v=HxXvGpLJCM8"},
-      {"@type":"VideoObject","name":"Autoestima y gestión de críticas","url":"https://www.youtube.com/watch?v=jIgmhgGak2k"},
-      {"@type":"VideoObject","name":"Webinar — Regular la ansiedad en familia","url":"https://youtu.be/mndyBpiZE3A"},
-      {"@type":"CreativeWork","name":"Ejercicio de escucha activa (podcast)","url":"https://podcasts.apple.com/es/podcast/ejercicio-de-escucha-activa/id1571328022?i=1000534148134"},
-      {"@type":"CreativeWork","name":"Superar la ansiedad — primeros pasos (podcast)","url":"https://podcasts.apple.com/es/podcast/primeros-pasos-para-superar-la-ansiedad-completamente/id1517059592?i=1000697859916"},
-      {"@type":"CreativeWork","name":"Autoestima práctica (podcast)","url":"https://podcasts.apple.com/es/podcast/autoestima-pr%C3%A1ctica/id825713023?i=1000679061415"}
+      {"@type":"VideoObject","name":"Ansiedad y respiración consciente","url":"https://www.youtube.com/watch?v=HKUlKZDs3H8"},
+      {"@type":"VideoObject","name":"Equilibrio emocional y bienestar","url":"https://www.youtube.com/watch?v=eZ6PQ9ILzTg"},
+      {"@type":"VideoObject","name":"Cápsula de autocuidado (Shorts)","url":"https://www.youtube.com/shorts/KUXJeTwwZSM"},
+      {"@type":"VideoObject","name":"Podcast 1 · Escucha consciente","url":"https://youtu.be/gtIb29z-iac"},
+      {"@type":"VideoObject","name":"Podcast 2 · Autoestima práctica","url":"https://youtu.be/4-lN_CAp2JI"},
+      {"@type":"CreativeWork","name":"Storybook 1 · Historias para crecer (PDF)","url":"https://tudominio.com/media/storybook1.pdf"},
+      {"@type":"CreativeWork","name":"Storybook 2 · Emociones y resiliencia (PDF)","url":"https://tudominio.com/media/storybook2.pdf"},
+      {"@type":"CreativeWork","name":"Storybook 3 · Autoestima y confianza (PDF)","url":"https://tudominio.com/media/storybook3.pdf"},
+      {"@type":"VideoObject","name":"Musicoterapia · Introducción (Live)","url":"https://www.youtube.com/live/E6EECP7Cps0"},
+      {"@type":"VideoObject","name":"Musicoterapia · Regulación (Live)","url":"https://www.youtube.com/live/okCdYzfo3yE"},
+      {"@type":"VideoObject","name":"Musicoterapia · Cápsula de autocuidado","url":"https://youtu.be/AOgCUPyvPbc"},
+      {"@type":"VideoObject","name":"Webinar — Regular la ansiedad en familia","url":"https://youtu.be/mndyBpiZE3A"}
     ],
     "publisher":{"@type":"Organization","name":"Punto Psicológico"}
   }
@@ -352,5 +406,4 @@
   });
 </script>
 </body>
-
 </html>
